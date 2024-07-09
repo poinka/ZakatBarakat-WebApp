@@ -1,0 +1,19 @@
+ [
+  {"title": "Introduction to Islamic Finance",
+  "description": "Explore the basics of Islamic finance.",
+  "imageUrl": "/images/img-1.png", 
+  "id": 1
+  },
+  {
+  "title": "Advanced Zakat Calculations",
+  "description": "Deep dive into advanced Zakat calculations.",
+  "imageUrl": "/images/img-2.png",
+  "id": 2
+    },
+    {
+      "title": "AAA",
+      "description":"Deep dive into advanced Zakat calculations.",
+      "imageUrl": "/images/img-3.png",
+      "id": 3
+    }
+]
