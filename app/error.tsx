@@ -1,7 +1,5 @@
-'use client'
+"use client";
 
 export default function errorWrapper(error: Error) {
-    return (
-        <h1>Oops! {error.message} </h1>
-    )
+  return <h1>Oops! {error.message} </h1>;
 }

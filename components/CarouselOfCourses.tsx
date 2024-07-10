@@ -6,12 +6,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import {  Card,
+import {
+  Card,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardTitle, } from "@/components/ui/card"
+  CardTitle,
+} from "@/components/ui/card";
 
 import Course from "../app/types";
 import Image from "next/image";
@@ -25,27 +27,44 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
   return (
     <div className={styles.carouselContainer}>
       <Carousel>
-        <CarouselPrevious className={`${styles.carouselButton} ${styles.carouselPrevious}`} />
+        <CarouselPrevious
+          className={`${styles.carouselButton} ${styles.carouselPrevious}`}
+        />
         <CarouselContent className={`${styles.carouselContent}`}>
           {courses.map((course) => (
-            <a href={`/courses/${course.id}`} className={styles.courseLink}>
-              <CarouselItem className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3`}>
-            <Card
-              key={course.id}>
-              
-                <CardContent className="aspect-square items-center justify-center">
-                  <Image src={course.imageUrl} layout="responsive" alt={course.title} width={300} height={300} className={styles.courseImage} />
-                  <CardTitle className={styles.title}>{course.title}</CardTitle>
-                  <CardDescription className={styles.description}>{course.description}</CardDescription>
-                </CardContent>
-              
-            </Card>
-            </CarouselItem>
+            <a
+              key={course.id}
+              href={`/courses/${course.id}`}
+              className={styles.courseLink}
+            >
+              <CarouselItem
+                className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3`}
+              >
+                <Card>
+                  <CardContent className="aspect-square items-center justify-center">
+                    <Image
+                      src={course.imageUrl}
+                      layout="responsive"
+                      alt={course.title}
+                      width={300}
+                      height={300}
+                      className={styles.courseImage}
+                    />
+                    <CardTitle className={styles.title}>
+                      {course.title}
+                    </CardTitle>
+                    <CardDescription className={styles.description}>
+                      {course.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
             </a>
-            
           ))}
         </CarouselContent>
-        <CarouselNext className={`${styles.carouselButton} ${styles.carouselNext}`} />
+        <CarouselNext
+          className={`${styles.carouselButton} ${styles.carouselNext}`}
+        />
       </Carousel>
     </div>
   );

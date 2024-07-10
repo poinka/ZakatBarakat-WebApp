@@ -1,10 +1,13 @@
-import { JSX, Key } from 'react';
-import Header2 from '../../components/Header2';
-import { promises as fs } from 'fs';
-import ArticleList from '@/components/ArticleList';
+import { JSX, Key } from "react";
+import Header2 from "../../components/Header2";
+import { promises as fs } from "fs";
+import ArticleList from "@/components/ArticleList";
 
 export default async function ArticlesPage() {
-  const file = await fs.readFile(process.cwd() + '/app/data/articlesData.json', 'utf8');
+  const file = await fs.readFile(
+    process.cwd() + "/app/data/articlesData.json",
+    "utf8",
+  );
   const articles = JSON.parse(file);
   // const courses = await (await fetch ("http://localhost:3000/api/courses")).json();
   return (
@@ -13,4 +16,4 @@ export default async function ArticlesPage() {
       <ArticleList articles={articles} />
     </div>
   );
-};
+}

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check": "prettier --check .",
+    "fix": "prettier --write ."
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -23,6 +25,7 @@
     "framer-motion": "^11.2.13",
     "lucide-react": "^0.407.0",
     "next": "^14.2.4",
+    "prettier": "^3.3.2",
     "react": "^18",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18",
