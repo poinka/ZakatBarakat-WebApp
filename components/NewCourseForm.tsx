@@ -1,28 +1,32 @@
+import Course from "@/app/types";
+import { supabase } from "@/lib/supabase";
 import { redirect } from "next/navigation";
 
-async function createCourse(data: FormData) {
+async function createCourse(formData: FormData) {
   "use server";
 
-  const { title, body, imageUrl } = Object.fromEntries(data);
+  const { title, description, imageUrl } = Object.fromEntries(formData);
 
-  const response = await fetch("http://localhost:3000/api/Courses", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ title, body, imageUrl, id: 4 }),
-  });
+  const { data: courses } = await supabase
+    .from("courses")
+    .insert([{ title: title, description: description, imageUrl: imageUrl }])
+    .select();
 
-  const course = await response.json();
+    if (!courses || courses.length === 0) {
+      // Handle the case where no course is found for the ID
+      return <div>Course not found.</div>;
+    }
+  
+  const course = courses[0] as Course;
 
-  redirect(`/Courses/${course.id}`);
+  redirect(`/courses/${course.id}`);
 }
 
 export default function NewCourseForm() {
   return (
     <form className="newCourseForm" action={createCourse}>
       <input type="text" placeholder="title" required name="title" />
-      <textarea placeholder="content" required name="body" />
+      <textarea placeholder="description" required name="description" />
 
       <div>
         <input type="submit" value="Add post" />

@@ -1,5 +1,5 @@
-import { promises as fs } from "fs";
-import path from "path";
+import Course from "@/app/types";
+import { supabase } from "@/lib/supabase";
 
 type Props = {
   params: {
@@ -22,18 +22,17 @@ async function getById(
 
 export default async function CoursePage({ params: { id } }: Props) {
   try {
-    // const filePath = path.join(process.cwd(), 'src/app/data/coursesData.json');
-    // const fileContent = await fs.readFile(filePath, 'utf8');
-    // const data = JSON.parse(fileContent);
-    const data = await (
-      await fetch("http://localhost:3000/api/Courses")
-    ).json();
-    const course = await getById(data, id);
+    const { data: courses } = await supabase.from("courses").select().eq("id", id);
+    if (!courses || courses.length === 0) {
+      // Handle the case where no course is found for the ID
+      return <div>Course not found.</div>;
+    }
+    const course = courses[0] as Course;
     return (
       <>
-        <h1 style={{ color: "black" }}>Course {course["title"]}</h1>
-        <p>{course["description"]}</p>
-        <img src={course["imageUrl"]} />
+        <h1 style={{ color: "black" }}>Course {course.title}</h1>
+        <p>{course.description}</p>
+        <img src={course.imageUrl} />
       </>
     );
   } catch (error) {
