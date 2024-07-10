@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Introduction to Islamic Finance",
+    "description": "Explore the basics of Islamic finance.",
+    "imageUrl": "/images/img-1.png",
+    "id": 1
+  },
+  {
+    "title": "Advanced Zakat Calculations",
+    "description": "Deep dive into advanced Zakat calculations.",
+    "imageUrl": "/images/img-2.png",
+    "id": 2
+  },
+  {
+    "title": "Islamic Banking Principles",
+    "description": "Learn about the core principles of Islamic banking.",
+    "imageUrl": "/images/img-3.png",
+    "id": 3
+  },
+  {
+    "title": "Halal Investment Strategies",
+    "description": "Discover strategies for making Halal investments.",
+    "imageUrl": "/images/img-4.png",
+    "id": 4
+  },
+  {
+    "title": "Islamic Finance Regulations",
+    "description": "Understand the regulatory framework of Islamic finance.",
+    "imageUrl": "/images/img-5.png",
+    "id": 5
+  }
+]

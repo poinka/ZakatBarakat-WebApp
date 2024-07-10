@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'; // Import Next.js Link component for navigation
 import backgroundImage from './images/main-photo-header.png';
-import Navigation from './Navigation';
+import Navigation from "./Navigation";
 
 const NavItems = [
   {label: "Home", href: "/"},

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'; // Import Next.js Link component for navigation
 import backgroundImage from './images/main-photo-header.png';
-import Navigation from "./Navigation";
+import Navigation from "../components/Navigation";
 
 const NavItems = [
   {label: "Home", href: "/"},
@@ -14,14 +14,6 @@ const NavItems = [
 
 
 const Header = () => {
-  const linkStyle = {
-    textDecoration: 'none', // Remove underline from links
-    color: 'white', // Set link color
-    fontSize: '18px', // Set font size
-    margin: '10px 10px', // Add margin for spacing
-    fontWeight: 'bold', // Bold text for links
-  };
-
   return (
     <header style={ {
       backgroundImage: `url(${backgroundImage.src})`,
@@ -39,7 +31,7 @@ const Header = () => {
       <div>
         <h1>Islamic Finance Academy</h1>
         <Link href="../courses">
-          <button style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '5px', cursor: 'pointer', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderColor: 'transparent', margin: '10%' }}>Start Education</button>
+          <button style={{ padding: '10px 20px', fontSize: '18px', borderRadius: '5px', cursor: 'pointer', backgroundColor: 'rgba(255, 255, 255, 0.7)', borderColor: 'transparent', margin: '10%', color: "rgb(112, 112, 112)" }}>Start Education</button>
         </Link>
         <br />
         <Navigation navLinks={NavItems} />
