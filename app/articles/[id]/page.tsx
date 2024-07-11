@@ -1,5 +1,5 @@
-import { promises as fs } from "fs";
-import path from "path";
+import Article from "@/app/types";
+import { supabase } from "@/lib/supabase";
 
 type Props = {
   params: {
@@ -22,15 +22,17 @@ async function getById(
 
 export default async function ArticlePage({ params: { id } }: Props) {
   try {
-    const filePath = path.join(process.cwd(), "app/data/articlesData.json");
-    const fileContent = await fs.readFile(filePath, "utf8");
-    const data = JSON.parse(fileContent);
-    const article = await getById(data, id);
+    const { data: articles } = await supabase.from("articles").select().eq("id", id);
+    if (!articles || articles.length === 0) {
+      // Handle the case where no article is found for the ID
+      return <div>Article not found.</div>;
+    }
+    const article = articles[0] as Article;
     return (
       <>
-        <h1 style={{ color: "black" }}>Article {article["title"]}</h1>
-        <p>{article["description"]}</p>
-        <img src={article["imageUrl"]} />
+        <h1 style={{ color: "black" }}>Article {article.title}</h1>
+        <p>{article.description}</p>
+        <img src={article.imageUrl} />
       </>
     );
   } catch (error) {
