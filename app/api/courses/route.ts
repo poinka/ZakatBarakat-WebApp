@@ -3,7 +3,7 @@ import { promises as fs } from "fs";
 
 export async function GET(req: Request) {
   const file = await fs.readFile(
-    process.cwd() + "/src/app/data/coursesData.json",
+    process.cwd() + "/app/data/coursesData.json",
     "utf8",
   );
   const data: {
