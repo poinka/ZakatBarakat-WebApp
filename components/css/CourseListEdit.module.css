@@ -1,0 +1,6 @@
+.courseCard {
+    margin: 5%;
+    padding: 2%;
+    border: solid rgb(42, 42, 42) 0.5px;
+    border-radius: 10px;
+}
