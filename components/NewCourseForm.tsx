@@ -35,7 +35,7 @@ export default function NewCourseForm() {
     setCardContents([...cardContents, ""]);
   };
 
-  const handleCardContentChange = (index, value) => {
+  const handleCardContentChange = (index: number, value: string) => {
     const newCardContents = [...cardContents];
     newCardContents[index] = value;
     setCardContents(newCardContents);
