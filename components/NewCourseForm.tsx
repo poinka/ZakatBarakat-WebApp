@@ -9,7 +9,7 @@ async function createCourse(formData: FormData) {
 
   const { data: courses } = await supabase
     .from("courses")
-    .insert([{ title: title, description: description, imageUrl: imageUrl }])
+    .insert([{ title: title, description: description }])
     .select();
 
   if (!courses || courses.length === 0) {
@@ -35,7 +35,7 @@ export default function NewCourseForm() {
     setCardContents([...cardContents, ""]);
   };
 
-  const handleCardContentChange = (index, value) => {
+  const handleCardContentChange = (index: number, value: string) => {
     const newCardContents = [...cardContents];
     newCardContents[index] = value;
     setCardContents(newCardContents);
