@@ -19,8 +19,3 @@ export default interface Article {
   id: number;
   body: string;
 }
-
-export default interface Card {
-  title: string;
-  body: string;
-}
