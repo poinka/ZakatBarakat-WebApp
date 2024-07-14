@@ -5,11 +5,11 @@ import { redirect } from "next/navigation";
 import { useState } from "react";
 
 async function createArticle(formData: FormData) {
-  const { title, description, imageUrl } = Object.fromEntries(formData);
+  const { title, description, imageUrl, content } = Object.fromEntries(formData);
 
   const { data: articles } = await supabase
     .from("articles")
-    .insert([{ title: title, description: description, imageUrl: imageUrl }])
+    .insert([{ title: title, description: description, body: content}])
     .select();
 
   if (!articles || articles.length === 0) {
@@ -17,11 +17,10 @@ async function createArticle(formData: FormData) {
   }
 
   const article = articles[0] as Article;
-  redirect(`/courses/${article.id}`);
+  redirect(`/articles/${article.id}`);
 }
 
 export default function NewArticleForm() {
-  const [showCardForm, setShowCardForm] = useState(false);
 
   return (
     <form

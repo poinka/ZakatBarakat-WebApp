@@ -1,15 +1,38 @@
 'use client'
 import Course from "@/app/types";
+import Card from "@/app/types";
 import { supabase } from "@/lib/supabase";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 
 async function createCourse(formData: FormData) {
-  const { title, description, imageUrl, cardContent } = Object.fromEntries(formData);
+  const { title, description, imageUrl } = Object.fromEntries(formData);
 
+  let index = 0;
+  let firstCardID = 0;
+  while (formData.get(`${index}`) !== null) {
+    const { data: cards } = await supabase
+      .from("cards")
+      .insert([{ body: formData.get(`${index}`)}])
+      .select();
+    if (index === 0) {
+      if (!cards || cards.length === 0) {
+        return <div>Card not found.</div>;
+      }
+      const card = cards[0] as Card;
+      firstCardID = card.id;
+    }
+    index++;
+  }
+
+  const cardIDs = [];
+  for (let i = firstCardID; i < firstCardID + index; i++) {
+    cardIDs.push(i);
+  }
+  
   const { data: courses } = await supabase
     .from("courses")
-    .insert([{ title: title, description: description, imageUrl: imageUrl }])
+    .insert([{ title: title, description: description, cardIDs: cardIDs }])
     .select();
 
   if (!courses || courses.length === 0) {
@@ -17,12 +40,6 @@ async function createCourse(formData: FormData) {
   }
 
   const course = courses[0] as Course;
-
-  if (cardContent) {
-    await supabase
-      .from("cards")
-      .insert([{ content: cardContent, course_id: course.id }]);
-  }
 
   redirect(`/courses/${course.id}`);
 }
@@ -86,7 +103,7 @@ export default function NewCourseForm() {
             <div key={index} className="mb-2">
               <textarea
                 required
-                name={`cardContent${index}`}
+                name={`${index}`}
                 maxLength={500}
                 value={content}
                 onChange={(e) => handleCardContentChange(index, e.target.value)}

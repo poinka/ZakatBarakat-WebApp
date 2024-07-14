@@ -3,6 +3,12 @@ export default interface Course {
   description: string;
   imageUrl: string;
   id: number;
+  cardIDs: number[];
+}
+
+export default interface Card {
+  id: number;
+  body: string;
 }
 
 export default interface Article {
@@ -10,4 +16,5 @@ export default interface Article {
   description: string;
   imageUrl: string;
   id: number;
+  body: string;
 }
