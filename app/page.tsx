@@ -36,7 +36,6 @@ export default async function HomePage() {
         <Header />
         <h1 className='text-center'>Recommended Courses</h1>
         <CarouselOfCourses courses={courses as Course[]} />
-        <h1 className='text-center'>Interesting Articles</h1>
         </div>
     )
   }
