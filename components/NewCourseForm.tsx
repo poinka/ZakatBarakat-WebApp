@@ -3,7 +3,7 @@ import Course from "@/app/types";
 import Card from "@/app/types";
 import { supabase } from "@/lib/supabase";
 import { redirect } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 async function createCourse(formData: FormData) {
   const { title, description, imageUrl } = Object.fromEntries(formData);
@@ -32,7 +32,7 @@ async function createCourse(formData: FormData) {
   
   const { data: courses } = await supabase
     .from("courses")
-    .insert([{ title: title, description: description, cardIDs: cardIDs, imageUrl: imageUrl }])
+    .insert([{ title: title, description: description, cardIDs: cardIDs }])
     .select();
 
   if (!courses || courses.length === 0) {
@@ -47,16 +47,6 @@ async function createCourse(formData: FormData) {
 export default function NewCourseForm() {
   const [showCardForm, setShowCardForm] = useState(false);
   const [cardContents, setCardContents] = useState([""]);
-  const [images, setImages] = useState([]);
-  const [selectedImage, setSelectedImage] = useState("");
-
-  useEffect(() => {
-    async function fetchImages() {
-      const { data: images } = await supabase.from('images').select();
-      setImages(images || []);
-    }
-    fetchImages();
-  }, []);
 
   const handleAddCard = () => {
     setCardContents([...cardContents, ""]);
@@ -66,10 +56,6 @@ export default function NewCourseForm() {
     const newCardContents = [...cardContents];
     newCardContents[index] = value;
     setCardContents(newCardContents);
-  };
-
-  const handleImageSelect = (event) => {
-    setSelectedImage(event.target.value);
   };
 
   return (
@@ -99,22 +85,6 @@ export default function NewCourseForm() {
           name="description"
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
-      </div>
-      <div className="space-y-2">
-        <label htmlFor="image" className="block text-sm font-medium text-gray-700">
-          Select Image
-        </label>
-        <select
-          name="imageUrl"
-          value={selectedImage}
-          onChange={handleImageSelect}
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        >
-          <option value="">Select an image</option>
-          {images.map((image, index) => (
-            <option key={index} value={image.url}>{image.url}</option>
-          ))}
-        </select>
       </div>
       <div className="mb-4">
         <button
