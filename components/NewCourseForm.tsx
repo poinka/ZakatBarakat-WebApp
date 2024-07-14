@@ -4,6 +4,7 @@ import Card from "@/app/types";
 import { supabase } from "@/lib/supabase";
 import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 async function createCourse(formData: FormData) {
   const { title, description, imageUrl } = Object.fromEntries(formData);
@@ -52,8 +53,13 @@ export default function NewCourseForm() {
 
   useEffect(() => {
     async function fetchImages() {
-      const { data } = await supabase.from('images').select('url');
-      setImages(data || []);
+      const numberOfImages = 6;
+      let imagesUrls = [] as { url: string }[];
+      for (let i = 1; i <= numberOfImages; i++) {
+        const { data } = await supabase.storage.from('images').getPublicUrl(`img_${i}.png`);
+        imagesUrls.push({url: data.publicUrl});
+      }
+      setImages(imagesUrls);
     }
     fetchImages();
   }, []);
@@ -69,6 +75,7 @@ export default function NewCourseForm() {
   };
 
   const handleImageSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    
     setSelectedImage(event.target.value);
   };
 
@@ -110,12 +117,13 @@ export default function NewCourseForm() {
           onChange={handleImageSelect}
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
-          <option value="">Select an image</option>
+          <option value="https://cqwnxtngxmuzpomxeztt.supabase.co/storage/v1/object/public/images/noimg.png">Select an image</option>
           {images.map((image, index) => (
-            <option key={index} value={image.url}>{image.url}</option>
+            <option key={index} value={image.url}>Image №{index + 1}</option>
           ))}
         </select>
       </div>
+      <Image src={selectedImage || 'https://cqwnxtngxmuzpomxeztt.supabase.co/storage/v1/object/public/images/noimg.png'} alt='Selected Image' width={200} height={200}/>
       <div className="mb-4">
         <button
           type="button"
