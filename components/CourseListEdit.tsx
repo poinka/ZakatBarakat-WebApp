@@ -23,7 +23,7 @@ export default function CourseListEdit({ courseInit, onDelete }: CourseListEditP
             <div>{courseInit.title}</div>
             <div style={{ display: 'flex', gap: '10px' }}>
                 <Button variant="secondary" asChild>
-                    <Link href={`/editCourses/${courseInit.id}`}>Edit</Link>
+                    <Link href={`editCourses/${courseInit.id}`}>Edit</Link>
                 </Button>
                 <Button variant="destructive" onClick={() => setShowConfirm(true)}>Delete</Button>
             </div>
