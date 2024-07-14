@@ -76,7 +76,7 @@ export default async function CardPage({ params: { cardID } }: Props) {
 
   if (currentCardIndex >= cards.length) {
     return <div>
-      <p>Congrats! You've completed the course.</p>
+      <p>Congrats! You have completed the course.</p>
       <Link href="/">On main page</Link>
       </div>;
   }
