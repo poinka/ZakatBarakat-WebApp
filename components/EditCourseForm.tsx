@@ -46,7 +46,7 @@ type EditCourseFormProps = {
 };
 
 export default function EditCourseForm({ courseId }: EditCourseFormProps) {
-  const [showCardForm, setShowCardForm] = useState(false);
+  const [showCardForm, setShowCardForm] = useState(true);
   const [courseData, setCourseData] = useState<Course | null>(null);
   const [cardContents, setCardContents] = useState<{ id?: number, body: string }[]>([]);
   const [images, setImages] = useState<{ url: string }[]>([]);
