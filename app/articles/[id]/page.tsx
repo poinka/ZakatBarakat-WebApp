@@ -8,19 +8,6 @@ type Props = {
   };
 };
 
-async function getById(
-  jsonObject: Record<string, any>,
-  id: string,
-): Promise<any | undefined> {
-  for (let objKey in jsonObject) {
-    let obj = jsonObject[objKey];
-    if (obj.id.toString() === id.toString()) {
-      return obj;
-    }
-  }
-  return undefined; // Explicitly return undefined if no matching object is found
-}
-
 export default async function ArticlePage({ params: { id } }: Props) {
   try {
     const { data: articles } = await supabase.from("articles").select().eq("id", id);

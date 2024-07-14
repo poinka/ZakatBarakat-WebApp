@@ -5,10 +5,12 @@ export default interface Course {
   imageUrl: string;
   id: number;
   cardIDs: number[];
+  level: string;
 }
 
 export default interface Card {
   id: number;
+  title: string;
   body: string;
 }
 
