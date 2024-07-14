@@ -1,24 +1,14 @@
 import Course from "@/app/types";
 import { supabase } from "@/lib/supabase";
+import MainEducationalCard from "@/components/MainEducationalCard"
+import Link from "next/link";
 
 type Props = {
   params: {
-    id: string;
+    id: number;
   };
 };
 
-async function getById(
-  jsonObject: Record<string, any>,
-  id: string,
-): Promise<any | undefined> {
-  for (let objKey in jsonObject) {
-    let obj = jsonObject[objKey];
-    if (obj.id.toString() === id.toString()) {
-      return obj;
-    }
-  }
-  return undefined; // Explicitly return undefined if no matching object is found
-}
 
 export default async function CoursePage({ params: { id } }: Props) {
   try {
@@ -29,11 +19,14 @@ export default async function CoursePage({ params: { id } }: Props) {
     }
     const course = courses[0] as Course;
     return (
-      <>
-        <h1 style={{ color: "black" }}>Course {course.title}</h1>
-        <p>{course.description}</p>
-        <img src={course.imageUrl} />
-      </>
+      <Link href={`/courses/${course.id}/${course.cardIDs[0]}`} style={{textDecoration: "none", color: "black"}}>
+      <div className="flex flex-col items-center justify-center min-h-screen py-2">
+        <MainEducationalCard 
+          course={course}
+        />
+        <p>{course.longDescription}</p>
+      </div>
+      </Link>
     );
   } catch (error) {
     console.error("Failed to load course data:", error);

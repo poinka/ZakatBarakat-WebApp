@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link"; // Import Next.js Link component for navigation
+import Link from "next/link";
 import backgroundImage from "./images/main-photo-header.png";
 import Navigation from "../components/Navigation";
 
@@ -14,41 +14,22 @@ const NavItems = [
 const Header = () => {
   return (
     <header
-      style={{
-        backgroundImage: `url(${backgroundImage.src})`,
-        height: "30%", // Adjust based on your image size
-        backgroundSize: "cover",
-        display: "flex",
-        flexDirection: "column", // Change to column direction
-        justifyContent: "space-between", // Space between items vertically
-        alignItems: "center",
-        color: "white",
-        textAlign: "center",
-        padding: "50px 0", // Add vertical padding
-      }}
+      className="bg-cover bg-top h-70 flex flex-col justify-between items-center text-white text-center py-12"
+      style={{ backgroundImage: `url(${backgroundImage.src})` }}
     >
       <div>
-        <h1>Islamic Finance Academy</h1>
+        <h1 className="text-2xl md:text-4xl font-bold mb-4 m-3">Islamic Finance Academy</h1>
         <Link href="../courses">
-          <button
-            style={{
-              padding: "10px 20px",
-              fontSize: "18px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              backgroundColor: "rgba(255, 255, 255, 0.7)",
-              borderColor: "transparent",
-              margin: "10%",
-              color: "rgb(112, 112, 112)",
-            }}
-          >
+          <button className="px-4 py-2 text-sm md:text-lg rounded-md cursor-pointer bg-white bg-opacity-70 border-none mt-4 text-gray-700 hover:bg-opacity-100">
             Start Education
           </button>
         </Link>
-        <br />
-        <Navigation navLinks={NavItems} />
+        <div className='m-3'>
+          <Navigation navLinks={NavItems} />
+        </div>
       </div>
     </header>
   );
 };
+
 export default Header;

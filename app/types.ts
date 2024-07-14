@@ -1,6 +1,7 @@
 export default interface Course {
   title: string;
-  description: string;
+  shortDescription: string;
+  longDescription: string;
   imageUrl: string;
   id: number;
   cardIDs: number[];
@@ -16,5 +17,10 @@ export default interface Article {
   description: string;
   imageUrl: string;
   id: number;
+  body: string;
+}
+
+export default interface Card {
+  title: string;
   body: string;
 }

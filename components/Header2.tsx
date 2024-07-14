@@ -14,22 +14,12 @@ const NavItems = [
 const Header = () => {
   return (
     <header
-      style={{
-        backgroundImage: `url(${backgroundImage.src})`,
-        height: "30%", // Adjust based on your image size
-        backgroundSize: "cover",
-        display: "flex",
-        flexDirection: "column", // Change to column direction
-        justifyContent: "space-between", // Space between items vertically
-        alignItems: "center",
-        color: "white",
-        textAlign: "center",
-        padding: "50px 0", // Add vertical padding
-      }}
+    className="bg-cover bg-top h-70 flex flex-col justify-between items-center text-white text-center py-12"
+    style={{ backgroundImage: `url(${backgroundImage.src})` }}
     >
       <div>
-        <h1>Islamic Finance Academy</h1>
-        <br />
+      <h1 className="text-2xl md:text-4xl font-bold mb-4 m-3">Islamic Finance Academy</h1>
+      <br />
         <Navigation navLinks={NavItems} />
       </div>
     </header>

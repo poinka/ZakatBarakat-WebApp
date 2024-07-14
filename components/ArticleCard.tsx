@@ -1,34 +1,24 @@
-import styles from "./css/Course.module.css";
 import Image from "next/image";
-import Article from "../app/types"; // Ensure you have the correct import for Course type
+import Article from "../app/types"; // Ensure you have the correct import for Article type
 import Link from "next/link";
-
 import { Card, CardContent } from "@/components/ui/card";
 
-const ArticleCard: React.FC<Article> = ({
-  title,
-  description,
-  imageUrl,
-  id,
-}) => {
+const ArticleCard: React.FC<Article> = ({ title, description, imageUrl, id }) => {
   return (
     <Link href={`/articles/${id}`} style={{ textDecoration: "none" }}>
-      <Card className="w-full h-full" style={{ margin: "5%" }}>
-        <CardContent className="flex flex-col h-full">
-          <div className="relative w-full aspect-w-1 aspect-h-1">
-            <Image
-              src={imageUrl}
-              alt={title}
-              layout="responsive"
-              width={300}
-              height={300}
-              className="rounded-t-lg"
-            />
-          </div>
-          <div className="flex-grow p-2">
-            <h2 className="text-lg font-semibold">{title}</h2>
-            <p className="text-sm">{description}</p>
-          </div>
+      <Card className="w-80 h-90 m-5 shadow-lg rounded-lg overflow-hidden bg-beige p-4 relative z-10 -mt-10 mx-4 border border-gray-300">
+        <CardContent className="">
+        {/* <div className="relative w-full h-48">
+          <Image
+            src={imageUrl}
+            alt={title}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-t-lg"
+          />
+        </div> */}
+          <h2 className="text-xl font-bold mb-2">{title}</h2>
+          <p className="text-md">{description}</p>
         </CardContent>
       </Card>
     </Link>
