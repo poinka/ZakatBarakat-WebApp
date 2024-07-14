@@ -1,6 +1,7 @@
 import Article from "@/app/types";
 import { supabase } from "@/lib/supabase";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   params: {
@@ -33,6 +34,7 @@ export default async function ArticlePage({ params: { id } }: Props) {
       <article className="prose prose-lg max-w-none">
         {article.body}
       </article>
+      <Link href="/">Go to the main menu</Link>
     </div>
     );
   } catch (error) {
