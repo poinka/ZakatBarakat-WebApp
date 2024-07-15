@@ -26,7 +26,7 @@ export default async function HomePage() {
           <div className="p-10 bg-ornaments-right">
             <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Recommended Articles</h1>
             <div className="flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 max-w-screen-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 max-w-screen-lg">
                 <ArticleCard {...article1}>
 
                 </ArticleCard>
@@ -37,7 +37,7 @@ export default async function HomePage() {
             </div>
             <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Financial News</h1>
             <div className="flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 max-w-screen-lg">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 max-w-screen-lg">
                 {news?.map((newPiece) => (
                   <NewsCard key={newPiece.id} {...newPiece} />
                 ))}
