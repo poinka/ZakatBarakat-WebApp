@@ -18,6 +18,7 @@ import {
 import Course from "../app/types";
 import Image from "next/image";
 import styles from "./css/CarouselOfCourses.module.css";
+import Link from "next/link";
 
 interface CoursesCarouselProps {
   courses: Course[];
@@ -30,17 +31,17 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
         <CarouselPrevious
           className={`${styles.carouselButton} ${styles.carouselPrevious}`}
         />
-        <CarouselContent className={`${styles.carouselContent}`}>
+        <CarouselContent className={`${styles.carouselContent} -ml-3`}>
           {courses.map((course) => (
-            <a
+            <Link
               key={course.id}
               href={`/courses/${course.id}`}
               className={styles.courseLink}
             >
               <CarouselItem
-                className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3 basis-1`}
+                className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3 basis-1 pl-9`}
               >
-                <Card>
+                <Card className="aspect-square">
                   <CardContent className="aspect-square items-center justify-center">
                     <Image
                       src={course.imageUrl}
@@ -59,7 +60,7 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
                   </CardContent>
                 </Card>
               </CarouselItem>
-            </a>
+            </Link>
           ))}
         </CarouselContent>
         <CarouselNext

@@ -70,13 +70,13 @@
 
 .navLink {
   text-decoration: none;
-  color: rgb(23, 23, 23);
+  color: #255425;
   font-weight: bold;
   padding: 0.5rem;
 }
 
 .activeNavLink {
-  color: rgb(23, 23, 23);
+  color: #255425;
   background-color: white;
   text-decoration: none;
   font-weight: bold;
