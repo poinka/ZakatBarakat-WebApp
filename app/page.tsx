@@ -19,7 +19,7 @@ export default async function HomePage() {
           <StartEducation />
 
           <div className="mt-16">
-            <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Recommended Courses</h1>
+            <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9 pb-6'>Recommended Courses</h1>
             <CarouselOfCourses courses={courses as Course[]} />
           </div>
           </div>
@@ -35,7 +35,7 @@ export default async function HomePage() {
                 </ArticleCard>
               </div>
             </div>
-            <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Financial News</h1>
+            <h1 className='pt-10 text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Financial News</h1>
             <div className="flex justify-center">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 max-w-screen-lg">
                 {news?.map((newPiece) => (
