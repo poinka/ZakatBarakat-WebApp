@@ -31,7 +31,7 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
         <CarouselPrevious
           className={`${styles.carouselButton} ${styles.carouselPrevious}`}
         />
-        <CarouselContent className={`${styles.carouselContent} -ml-3`}>
+        <CarouselContent className={`${styles.carouselContent} -ml-5`}>
           {courses.map((course) => (
             <Link
               key={course.id}
@@ -39,7 +39,7 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
               className={styles.courseLink}
             >
               <CarouselItem
-                className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3 basis-1 pl-9`}
+                className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3 basis-1 pl-10`}
               >
                 <Card className="aspect-square">
                   <CardContent className="aspect-square items-center justify-center">
