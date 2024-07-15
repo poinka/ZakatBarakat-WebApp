@@ -125,7 +125,8 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
           Description
         </label>
         <textarea
-          placeholder="Short description"
+          placeholder="Short description (up to 50 characters)"
+          maxLength={50}
           required
           name="description"
           defaultValue={courseData.description}

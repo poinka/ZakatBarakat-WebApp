@@ -101,7 +101,8 @@ export default function NewCourseForm() {
           Description
         </label>
         <textarea
-          placeholder="Short description"
+          maxLength={50}
+          placeholder="Short description (up to 50 characters)"
           required
           name="description"
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"

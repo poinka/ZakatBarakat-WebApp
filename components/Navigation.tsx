@@ -14,7 +14,7 @@ type Props = {
 const Navigation = ({ navLinks }: Props) => {
   const pathName = usePathname();
   return (
-    <nav className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4">
+    <nav style={{width: "90%", margin: "auto"}}>
       {navLinks.map((link) => {
         const isActive = pathName === link.href;
         return (

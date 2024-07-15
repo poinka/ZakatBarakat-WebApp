@@ -38,7 +38,7 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
               className={styles.courseLink}
             >
               <CarouselItem
-                className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3`}
+                className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3 basis-1`}
               >
                 <Card>
                   <CardContent className="aspect-square items-center justify-center">

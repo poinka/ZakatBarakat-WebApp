@@ -21,3 +21,10 @@ export default interface Article {
   id: number;
   body: string;
 }
+
+export default interface News {
+  title: string;
+  text: string;
+  link: string;
+  id: number;
+}
