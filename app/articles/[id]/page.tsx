@@ -1,7 +1,7 @@
 import Article from "@/app/types";
 import { supabase } from "@/lib/supabase";
-import Image from "next/image";
 import Link from "next/link";
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 
 type Props = {
   params: {
@@ -18,23 +18,18 @@ export default async function ArticlePage({ params: { id } }: Props) {
     }
     const article = articles[0] as Article;
     return (
-      <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl md:text-5xl font-bold text-center mb-6">{article.title}</h1>
-      <div className="flex justify-center mb-6">
-        <Image
-          src={article.imageUrl}
-          alt={article.title}
-          width={800}
-          height={400}
-          className="rounded-lg"
-          objectFit="cover"
-        />
-      </div>
-      <p className="text-lg md:text-xl text-gray-700 mb-4">{article.description}</p>
-      <article className="prose prose-lg max-w-none">
+      <div className="pt-16 bg-ornaments">
+      <Card className="p-5" style={{width: "70%", margin: "auto"}}>
+      <CardTitle className="text-sm md:text-3xl font-bold text-start p-5 text-green-900">{article.title}</CardTitle>
+      <CardContent className="">
+        <p className="text-xs md:text-sm text-green-950">
         {article.body}
-      </article>
-      <Link href="/">Go to the main menu</Link>
+        </p>
+      </CardContent>
+      <div className="flex justify-center items-center">
+      <Link href="/articles" className="p-5 bg-green-800 text-white py-2 px-4 rounded-md shadow-md hover:bg-green-900 text-sm md:text-base lg:text-lg">Go back</Link>
+      </div>
+    </Card>
     </div>
     );
   } catch (error) {

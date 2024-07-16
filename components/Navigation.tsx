@@ -16,7 +16,7 @@ const Navigation = ({ navLinks }: Props) => {
   return (
     <nav style={{width: "90%", margin: "auto"}}>
       {navLinks.map((link) => {
-        const isActive = pathName === link.href;
+        const isActive = `/${pathName.split('/')[1]}` === link.href;
         return (
           <Link
             key={link.label}
