@@ -8,8 +8,8 @@ const CourseList: React.FC<{ courses: Course[] }> = ({ courses }) => {
       <RecommendedCourse {...courses[0]}></RecommendedCourse>
       <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5  gap-4 pt-10 p-6">
       {courses.map((course) => (
-        <div className="" style={{width: "90%", margin: "auto"}}>
-        <CourseCard key={course.id} {...course} />
+        <div key={course.id} className="" style={{width: "90%", margin: "auto"}}>
+        <CourseCard {...course} />
         </div>
       ))}
     </div>
