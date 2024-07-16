@@ -19,7 +19,7 @@ export default async function ArticlePage({ params: { id } }: Props) {
     const article = articles[0] as Article;
     return (
       <div className="pt-16 bg-ornaments">
-      <Card className="p-5" style={{width: "70%", margin: "auto"}}>
+      <Card className="p-5 m-auto w-10/12 lg:w-2/3">
       <CardTitle className="text-sm md:text-3xl font-bold text-start p-5 text-green-900">{article.title}</CardTitle>
       <CardContent className="">
         <p className="text-xs md:text-sm text-green-950">
