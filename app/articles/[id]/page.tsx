@@ -20,9 +20,9 @@ export default async function ArticlePage({ params: { id } }: Props) {
     return (
       <div className="pt-16 bg-ornaments">
       <Card className="p-5 m-auto w-10/12 lg:w-2/3">
-      <CardTitle className="text-sm md:text-3xl font-bold text-start p-5 text-green-900">{article.title}</CardTitle>
+      <CardTitle className="text-xl md:text-3xl font-bold text-start p-5 pb-10 lg:p-10 text-green-900">{article.title}</CardTitle>
       <CardContent className="">
-        <p className="text-xs md:text-sm text-green-950">
+        <p className="text-l lg:p-10 md:text-l text-green-950">
         {article.body}
         </p>
       </CardContent>
