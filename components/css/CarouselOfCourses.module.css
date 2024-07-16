@@ -41,6 +41,7 @@
   max-width: 300px; 
   max-height: 300px; 
   margin: 3%;
+  border-radius: 10px;
 }
 
 .courseLink {

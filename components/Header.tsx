@@ -13,7 +13,7 @@ const NavItems = [
 const Header = () => {
   return (
     <header
-      className="bg-cover bg-top h-70 flex flex-col justify-between items-center text-white text-center pt-12">
+      className="bg-cover bg-top h-70 flex flex-col justify-between items-center text-center pt-12">
       <Navigation navLinks={NavItems} />
     </header>
   );
