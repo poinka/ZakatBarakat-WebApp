@@ -14,8 +14,10 @@ export default function Footer() {
             {/* Add about us details or links here */}
           </div>
           <div className="flex flex-col">
-            <h1 className="text-lg font-bold mb-2">useful links:</h1>
-            {/* Add useful links here */}
+            <h1 className="text-lg font-bold mb-2">social media:</h1>
+            <Link target="_blank" href="https://www.facebook.com/profile.php?id=61551552044986">Facebook</Link>
+            <Link target="_blank" href="https://x.com/ZakatAppIslamic">X</Link>
+            <Link target="_blank" href="https://www.instagram.com/zakatapp.pro/">Instagram</Link>
           </div>
         </div>
       </div>

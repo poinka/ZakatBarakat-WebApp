@@ -53,6 +53,8 @@ export default function CardPage({ params: { cardID } }: Props) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [animating, setAnimating] = useState(false);
+  const [swipeDirection, setSwipeDirection] = useState('left');
+
 
   useEffect(() => {
     if (!isNaN(courseIdNum)) {
@@ -70,6 +72,7 @@ export default function CardPage({ params: { cardID } }: Props) {
 
   const handleNextCard = () => {
     if (currentCardIndex < cards.length - 1 && !animating) {
+      setSwipeDirection('left');
       setAnimating(true);
       setTimeout(() => {
         setCurrentCardIndex((prevIndex) => prevIndex + 1);
@@ -80,6 +83,7 @@ export default function CardPage({ params: { cardID } }: Props) {
 
   const handlePreviousCard = () => {
     if (currentCardIndex > 0 && !animating) {
+      setSwipeDirection('right');
       setAnimating(true);
       setTimeout(() => {
         setCurrentCardIndex((prevIndex) => prevIndex - 1);
@@ -105,10 +109,14 @@ export default function CardPage({ params: { cardID } }: Props) {
         
         {currentCardIndex < cards.length ? (
           <div 
-            {...swipeHandlers}
-            className={`relative ${
-              animating ? (currentCardIndex % 2 === 0 ? 'swipe-enter' : 'swipe-exit') : ''
-            }`}
+          {...swipeHandlers}
+          className={`relative ${
+            animating
+              ? swipeDirection === 'left'
+                ? 'swipe-enter swipe-exit-right'
+                : 'swipe-enter-right swipe-exit'
+              : ''
+          }`}
           >
             <h2>Card {currentCardIndex + 1}</h2>
             <EducationalCard {...cards[currentCardIndex]} />
