@@ -1,8 +1,10 @@
 'use client'
 import Article from "@/app/types";
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 async function createArticle(formData: FormData) {
   const { title, description, imageUrl, content } = Object.fromEntries(formData);
@@ -50,17 +52,7 @@ export default function NewArticleForm() {
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
       </div>
-      <div className="space-y-2">
-        <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">
-          Image URL
-        </label>
-        <input
-          type="text"
-          placeholder="Image URL"
-          name="imageUrl"
-          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-        />
-      </div>
+      
       <div className="bg-gray-100 p-4 rounded-md">
         <h3 className="text-lg font-semibold mb-2">Content</h3>
         <textarea
@@ -77,6 +69,11 @@ export default function NewArticleForm() {
       >
         Add Article
       </button>
+      <Link href="/admin" className="m-6">
+      <Button variant="outline">
+        Go back
+      </Button>
+      </Link>
     </form>
   );
 }

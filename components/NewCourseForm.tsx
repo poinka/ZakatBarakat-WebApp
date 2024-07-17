@@ -5,6 +5,8 @@ import { supabase } from "@/lib/supabase";
 import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { Button } from "./ui/button";
 
 async function createCourse(formData: FormData) {
   const { title, description, imageUrl } = Object.fromEntries(formData);
@@ -175,6 +177,12 @@ export default function NewCourseForm() {
       >
         Add Course
       </button>
+
+      <Link href="/admin" className="m-6">
+      <Button variant="outline">
+        Go back
+      </Button>
+      </Link>
     </form>
   );
 }

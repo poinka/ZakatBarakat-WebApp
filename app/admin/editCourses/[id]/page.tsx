@@ -8,8 +8,8 @@ type Props = {
 
 export default function EditCourse({ params: { id } }: Props) {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold mb-8 text-gray-800">Edit the Course</h1>
+    <div className="min-h-screen bg-inherit flex flex-col items-center justify-center pt-20 w-3/4 m-auto">
+      <h1 className="text-4xl font-bold mb-8 text-green-800">Edit the Course</h1>
       <EditCourseForm courseId={id} />
     </div>
   );

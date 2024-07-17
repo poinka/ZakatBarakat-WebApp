@@ -3,6 +3,8 @@ import { supabase } from "@/lib/supabase";
 import CourseListEdit from "@/components/CourseListEdit";
 import Course from "@/app/types";
 import React from 'react';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default async function editCourse() {
     const { data: courses } = await supabase.from("courses").select();
@@ -14,15 +16,30 @@ export default async function editCourse() {
 
     if (courses != null) {
         return (
-            <div>
+            <div className="bg-inherit pt-20">
                 {courses.map((course: Course) => (
                     <CourseListEdit key={course.id} courseInit={course} onDelete={handleDelete} />
                 ))}
+                <div className="w-20 m-auto">
+                    <Link href="/admin">
+                        <Button variant="outline">
+                            Go back
+                        </Button>
+                    </Link>
+                </div>
             </div>
         );
     } else {
         return (
+            <div className="w-20 m-auto">
             <h1>There are no courses</h1>
+
+            <Link href="/admin" className="m-auto">
+                <Button variant="outline">
+                    Go back
+                </Button>
+            </Link>
+            </div>
         );
     }
 }

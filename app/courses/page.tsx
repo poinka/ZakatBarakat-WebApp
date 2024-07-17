@@ -6,7 +6,7 @@ export default async function CoursesPage() {
   const { data: courses} = await supabase.from("courses").select();
   
   return (
-    <div>
+    <div className="bg-ornaments">
       <CourseList courses={courses as Course[]} />
     </div>
   );

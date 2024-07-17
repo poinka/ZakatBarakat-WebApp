@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 async function updateCourse(formData: FormData, courseId: number) {
   const { title, description, imageUrl } = Object.fromEntries(formData);
@@ -90,6 +91,11 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
     setCardContents(newCardContents);
   };
 
+  const handleDeleteCard = (index: number) => {
+    const newCardContents = cardContents.filter((_, i) => i !== index);
+    setCardContents(newCardContents);
+  };
+
   const handleImageSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedImage(event.target.value);
   };
@@ -164,7 +170,7 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
         <div className="mb-4 bg-gray-100 p-4 rounded-md">
           <h3 className="text-lg font-semibold mb-2">Add Cards to Course</h3>
           {cardContents.map((content, index) => (
-            <div key={index} className="mb-2">
+            <div key={index} className="mb-2 flex items-center">
               <textarea
                 required
                 name={`${index}`}
@@ -175,6 +181,13 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
                 placeholder="Enter card text (up to 700 characters)"
               ></textarea>
               {content.id && <input type="hidden" name={`cardId-${index}`} value={content.id} />}
+              <button
+                type="button"
+                onClick={() => handleDeleteCard(index)}
+                className="bg-red-500 text-white rounded-md px-4 py-2 ml-2"
+              >
+                Delete
+              </button>
             </div>
           ))}
           <div className="flex justify-end mt-2">
@@ -197,10 +210,17 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
       )}
       <button
         type="submit"
-        className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        className="inline-flex justify-center py-2 px-4 mx-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
         Save Changes
       </button>
+      <Link href="/admin/editCourses">
+      <button
+        className="inline-flex justify-center py-2 px-4 mx-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-slate-300 hover:bg-slate-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400"
+      >
+        Go back
+      </button>
+      </Link>
     </form>
   );
 }

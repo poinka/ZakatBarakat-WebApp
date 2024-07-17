@@ -29,7 +29,7 @@ export default function CourseListEdit({ courseInit, onDelete }: CourseListEditP
             </div>
             {showConfirm && (
                 <div>
-                    <p>Are you sure you want to delete this course?</p>
+                    <p className="text-xs lg:text-lg">Are you sure you want to delete this course?</p>
                     <Button variant="destructive" onClick={handleDelete}>Confirm</Button>
                     <Button variant="outline" onClick={() => setShowConfirm(false)}>Cancel</Button>
                 </div>

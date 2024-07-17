@@ -5,7 +5,7 @@ import Article from "../types";
 export default async function ArticlesPage() {
   const { data: articles} = await supabase.from("articles").select();
   return (
-    <div>
+    <div className="bg-ornaments">
       <ArticleList articles={articles as Article[]} />
     </div>
   );

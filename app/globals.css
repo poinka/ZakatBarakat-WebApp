@@ -73,7 +73,15 @@
   color: #255425;
   font-weight: bold;
   padding: 0.5rem;
+  transition: all 0.5s ease-in-out;
 }
+
+/* .navLink:hover,
+.navLink:focus {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+} */
 
 .activeNavLink {
   color: #255425;
