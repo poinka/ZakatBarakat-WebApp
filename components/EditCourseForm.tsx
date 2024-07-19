@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 async function updateCourse(formData: FormData, courseId: number) {
-  const { title, description, imageUrl } = Object.fromEntries(formData);
+  const { title, shortDescription, longDescription, level, imageUrl } = Object.fromEntries(formData);
 
   let index = 0;
   const cardIds: number[] = [];
@@ -36,7 +36,7 @@ async function updateCourse(formData: FormData, courseId: number) {
 
   await supabase
     .from("courses")
-    .update({ title: title, description: description, cardIDs: cardIds, imageUrl: imageUrl })
+    .update({ title: title, shortDescription: shortDescription, longDescription: longDescription, level: level, cardIDs: cardIds, imageUrl: imageUrl })
     .eq("id", courseId);
 
   window.location.href = `/courses/${courseId}`; // Redirect using window.location
@@ -126,18 +126,46 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
       </div>
+      
       <div className="space-y-2">
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-          Description
+        <label htmlFor="shortDescription" className="block text-sm font-medium text-gray-700">
+          Short Description
         </label>
         <textarea
-          placeholder="Short description (up to 50 characters)"
           maxLength={50}
+          placeholder="Short description (up to 50 characters)"
           required
-          name="description"
-          defaultValue={courseData.description}
+          name="shortDescription"
+          defaultValue={courseData.shortDescription}
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="longDescription" className="block text-sm font-medium text-gray-700">
+          Long Description
+        </label>
+        <textarea
+          placeholder="Long description"
+          required
+          name="longDescription"
+          defaultValue={courseData.longDescription}
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="level" className="block text-sm font-medium text-gray-700">
+          Level
+        </label>
+        <select
+          name="level"
+          required
+          defaultValue={courseData.level}
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        >
+          <option value="">Select level</option>
+          <option value="beginner">For Beginners</option>
+          <option value="advanced">Advanced</option>
+        </select>
       </div>
       <div className="space-y-2">
         <label htmlFor="image" className="block text-sm font-medium text-gray-700">

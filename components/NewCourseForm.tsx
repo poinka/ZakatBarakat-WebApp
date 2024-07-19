@@ -9,14 +9,14 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 async function createCourse(formData: FormData) {
-  const { title, description, imageUrl } = Object.fromEntries(formData);
+  const { title, shortDescription, longDescription, level, imageUrl } = Object.fromEntries(formData);
 
   let index = 0;
   let firstCardID = 0;
   while (formData.get(`${index}`) !== null) {
     const { data: cards } = await supabase
       .from("cards")
-      .insert([{ body: formData.get(`${index}`)}])
+      .insert([{ body: formData.get(`${index}`) }])
       .select();
     if (index === 0) {
       if (!cards || cards.length === 0) {
@@ -35,7 +35,7 @@ async function createCourse(formData: FormData) {
   
   const { data: courses } = await supabase
     .from("courses")
-    .insert([{ title: title, description: description, cardIDs: cardIDs, imageUrl: imageUrl }])
+    .insert([{ title: title, shortDescription: shortDescription, longDescription: longDescription, level: level, cardIDs: cardIDs, imageUrl: imageUrl }])
     .select();
 
   if (!courses || courses.length === 0) {
@@ -59,7 +59,7 @@ export default function NewCourseForm() {
       let imagesUrls = [] as { url: string }[];
       for (let i = 1; i <= numberOfImages; i++) {
         const { data } = await supabase.storage.from('images').getPublicUrl(`img_${i}.png`);
-        imagesUrls.push({url: data.publicUrl});
+        imagesUrls.push({ url: data.publicUrl });
       }
       setImages(imagesUrls);
     }
@@ -77,7 +77,6 @@ export default function NewCourseForm() {
   };
 
   const handleImageSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    
     setSelectedImage(event.target.value);
   };
 
@@ -99,16 +98,41 @@ export default function NewCourseForm() {
         />
       </div>
       <div className="space-y-2">
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-          Description
+        <label htmlFor="shortDescription" className="block text-sm font-medium text-gray-700">
+          Short Description
         </label>
         <textarea
           maxLength={50}
           placeholder="Short description (up to 50 characters)"
           required
-          name="description"
+          name="shortDescription"
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="longDescription" className="block text-sm font-medium text-gray-700">
+          Long Description
+        </label>
+        <textarea
+          placeholder="Long description"
+          required
+          name="longDescription"
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        />
+      </div>
+      <div className="space-y-2">
+        <label htmlFor="level" className="block text-sm font-medium text-gray-700">
+          Level
+        </label>
+        <select
+          name="level"
+          required
+          className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        >
+          <option value="">Select level</option>
+          <option value="beginner">For Beginners</option>
+          <option value="advanced">Advanced</option>
+        </select>
       </div>
       <div className="space-y-2">
         <label htmlFor="image" className="block text-sm font-medium text-gray-700">
@@ -126,7 +150,7 @@ export default function NewCourseForm() {
           ))}
         </select>
       </div>
-      <Image src={selectedImage || 'https://cqwnxtngxmuzpomxeztt.supabase.co/storage/v1/object/public/images/noimg.png'} alt='Selected Image' width={200} height={200}/>
+      <Image src={selectedImage || 'https://cqwnxtngxmuzpomxeztt.supabase.co/storage/v1/object/public/images/noimg.png'} alt='Selected Image' width={200} height={200} />
       <div className="mb-4">
         <button
           type="button"
@@ -179,9 +203,9 @@ export default function NewCourseForm() {
       </button>
 
       <Link href="/admin" className="m-6">
-      <Button variant="outline">
-        Go back
-      </Button>
+        <Button variant="outline">
+          Go back
+        </Button>
       </Link>
     </form>
   );

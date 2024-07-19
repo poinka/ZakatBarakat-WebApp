@@ -55,7 +55,6 @@ export default function CardPage({ params: { cardID } }: Props) {
   const [animating, setAnimating] = useState(false);
   const [swipeDirection, setSwipeDirection] = useState('left');
 
-
   useEffect(() => {
     if (!isNaN(courseIdNum)) {
       fetchCourseWithCards(courseIdNum)
@@ -71,8 +70,8 @@ export default function CardPage({ params: { cardID } }: Props) {
   }, [courseIdNum]);
 
   const handleNextCard = () => {
-    if (currentCardIndex < cards.length - 1 && !animating) {
-      setSwipeDirection('left');
+    if (currentCardIndex < cards.length && !animating) {
+      setSwipeDirection('right');
       setAnimating(true);
       setTimeout(() => {
         setCurrentCardIndex((prevIndex) => prevIndex + 1);
@@ -83,7 +82,7 @@ export default function CardPage({ params: { cardID } }: Props) {
 
   const handlePreviousCard = () => {
     if (currentCardIndex > 0 && !animating) {
-      setSwipeDirection('right');
+      setSwipeDirection('left');
       setAnimating(true);
       setTimeout(() => {
         setCurrentCardIndex((prevIndex) => prevIndex - 1);

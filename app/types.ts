@@ -10,7 +10,6 @@ export default interface Course {
 
 export default interface Card {
   id: number;
-  title: string;
   body: string;
 }
 

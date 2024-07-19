@@ -12,12 +12,13 @@ type Props = {
 
 export default async function CoursePage({ params: { id } }: Props) {
   try {
-    const { data: courses } = await supabase.from("courses").select().eq("id", id);
-    if (!courses || courses.length === 0) {
+    const { data } = await supabase.from("courses").select().eq("id", id).single();
+    if (!data) {
       // Handle the case where no course is found for the ID
       return <div>Course not found.</div>;
     }
-    const course = courses[0] as Course;
+    const course = data as Course;
+    console.log(course)
     return (
       <Link href={`/courses/${course.id}/${course.cardIDs[0]}`} style={{textDecoration: "none", color: "black"}}>
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
