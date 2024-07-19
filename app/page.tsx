@@ -10,8 +10,11 @@ import NewsCard from "@/components/NewsCard";
 import useSWR from "swr";
 import { fetcher } from "@/lib/fetcher";
 import LoadingPage from "./loading";
+import { useState } from "react";
+import TelegramWebApp from "@/components/TelegramWebApp";
 
 export default function HomePage() {
+  const [userId, setUserId] = useState<number | null>(null);
   const { data: courses } = useSWR<Course[]>('courses', fetcher)
   const { data: articles } = useSWR<Article[]>("articles", fetcher)
   const { data: news } = useSWR<News[]>('news', fetcher)
@@ -21,6 +24,7 @@ export default function HomePage() {
     const article2 = articles[1];
     return (
       <div className=''>
+        <TelegramWebApp setUserId={setUserId} />
         <div className="bg-ornaments bg-ornaments-sm p-10">
           <StartEducation />
 
@@ -28,7 +32,7 @@ export default function HomePage() {
             <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9 pb-6'>Recommended Courses</h1>
             <CarouselOfCourses courses={courses} />
           </div>
-          </div>
+        </div>
           <div className="p-10 bg-ornaments-right">
             <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Recommended Articles</h1>
             <div className="flex justify-center">
@@ -50,7 +54,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+      </div>
     )
   } else {
     return (
