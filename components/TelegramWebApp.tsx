@@ -28,14 +28,20 @@ const TelegramWebApp: React.FC<TelegramWebAppProps> = ({ setUserId }) => {
           });
         }
 
-        // Установить Web App в полноэкранный режим после небольшой задержки
-        const timeoutId = setTimeout(() => {
-          webApp.expand();
-          setIsTelegramInitialized(true);
-        }, 1000); // Задержка в 1000ms, при необходимости можно увеличить или уменьшить
+        // Проверяем состояние готовности
+        const checkWebAppReady = () => {
+          if (webApp.ready()) {
+            // Если Web App инициализирован, разверните его
+            webApp.expand();
+            setIsTelegramInitialized(true);
+          } else {
+            // Если не инициализирован, попробуйте снова через небольшую задержку
+            setTimeout(checkWebAppReady, 500); // Проверка каждые 500ms
+          }
+        };
 
-        // Очистка таймера при размонтировании компонента
-        return () => clearTimeout(timeoutId);
+        // Запуск проверки готовности Web App
+        checkWebAppReady();
       }
     };
 

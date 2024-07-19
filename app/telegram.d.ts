@@ -12,6 +12,7 @@ interface TelegramWebApp {
     [key: string]: any;
   };
   expand(): void;
+  ready(): bool;
   onEvent(event: string, callback: (data: any) => void): void;
 }
 
