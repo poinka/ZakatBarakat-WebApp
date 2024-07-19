@@ -1,15 +1,21 @@
+'use client'
 import Header from "../components/Header";
 import CarouselOfCourses from "@/components/CarouselOfCourses"; // Adjust the path based on your file structure
-import { supabase } from "@/lib/supabase";
 import Course from "./types";
+import Article from "./types";
+import News from "./types";
 import ArticleCard from "@/components/ArticleCard";
 import StartEducation from "@/components/StartEducation";
 import NewsCard from "@/components/NewsCard";
+import useSWR from "swr";
+import { fetcher } from "@/lib/fetcher";
+import LoadingPage from "./loading";
 
-export default async function HomePage() {
-  const { data: courses } = await supabase.from("courses").select();
-  const { data: articles } = await supabase.from("articles").select();
-  const { data: news } = await supabase.from("news").select();
+export default function HomePage() {
+  const { data: courses } = useSWR<Course[]>('courses', fetcher)
+  const { data: articles } = useSWR<Article[]>("articles", fetcher)
+  const { data: news } = useSWR<News[]>('news', fetcher)
+  if (!courses || !articles || !news) return LoadingPage();
   if (articles && articles?.length >= 2) {
     const article1 = articles[0];
     const article2 = articles[1];
@@ -20,7 +26,7 @@ export default async function HomePage() {
 
           <div className="mt-16">
             <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9 pb-6'>Recommended Courses</h1>
-            <CarouselOfCourses courses={courses as Course[]} />
+            <CarouselOfCourses courses={courses} />
           </div>
           </div>
           <div className="p-10 bg-ornaments-right">
@@ -51,7 +57,7 @@ export default async function HomePage() {
       <div className=''>
         <Header />
         <h1 className='text-center'>Recommended Courses</h1>
-        <CarouselOfCourses courses={courses as Course[]} />
+        <CarouselOfCourses courses={courses} />
         </div>
     )
   }

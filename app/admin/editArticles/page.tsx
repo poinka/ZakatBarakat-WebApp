@@ -5,19 +5,26 @@ import Article from "@/app/types";
 import React from 'react';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { fetcher } from "@/lib/fetcher";
+import useSWR from "swr";
+import errorWrapper from "@/app/error";
+import LoadingPage from "@/app/loading";
 
-export default async function editCourse() {
-    const { data: articles } = await supabase.from("articles").select();
+export default function EditCourse() {
+    const { data: articles, error } = useSWR<Article[]>('articles', fetcher)
+    if (error) return errorWrapper(error);
+    if (!articles) return LoadingPage();
 
     const handleDelete = async (id: number) => {
         await supabase.from("courses").delete().eq('id', id);
+        window.location.reload();
         // You might want to re-fetch the courses list here or remove the deleted course from the local state.
     };
 
     if (articles != null) {
         return (
             <div>
-                {articles.map((article: Article) => (
+                {articles.map((article) => (
                     <ArticleListEdit key={article.id} article={article} onDelete={handleDelete} />
                 ))}
                 <div className="w-20 m-auto">

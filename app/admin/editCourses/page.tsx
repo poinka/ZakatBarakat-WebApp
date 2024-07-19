@@ -5,19 +5,26 @@ import Course from "@/app/types";
 import React from 'react';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { fetcher } from "@/lib/fetcher";
+import useSWR from "swr";
+import errorWrapper from "@/app/error";
+import LoadingPage from "@/app/loading";
 
-export default async function editCourse() {
-    const { data: courses } = await supabase.from("courses").select();
+export default function EditCourse() {
+    const { data: courses, error } = useSWR<Course[]>('courses', fetcher)
+    if (error) return errorWrapper(error);
+    if (!courses) return LoadingPage();
 
     const handleDelete = async (id: number) => {
         await supabase.from("courses").delete().eq('id', id);
+        window.location.reload();
         // You might want to re-fetch the courses list here or remove the deleted course from the local state.
     };
 
     if (courses != null) {
         return (
             <div className="bg-inherit pt-20">
-                {courses.map((course: Course) => (
+                {courses.map((course) => (
                     <CourseListEdit key={course.id} courseInit={course} onDelete={handleDelete} />
                 ))}
                 <div className="w-20 m-auto">
