@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
 
 interface TelegramWebAppProps {
@@ -9,7 +9,7 @@ const TelegramWebApp: React.FC<TelegramWebAppProps> = ({ setUserId }) => {
   const [isTelegramInitialized, setIsTelegramInitialized] = useState(false);
 
   useEffect(() => {
-    const checkTelegram = () => {
+    const initializeTelegram = () => {
       if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
         const webApp = window.Telegram.WebApp;
         const initDataUnsafe = webApp.initDataUnsafe;
@@ -28,24 +28,20 @@ const TelegramWebApp: React.FC<TelegramWebAppProps> = ({ setUserId }) => {
           });
         }
 
-        // Установить Web App в полноэкранный режим
-        webApp.expand();
-        setIsTelegramInitialized(true);
+        // Установить Web App в полноэкранный режим после небольшой задержки
+        const timeoutId = setTimeout(() => {
+          webApp.expand();
+          setIsTelegramInitialized(true);
+        }, 1000); // Задержка в 1000ms, при необходимости можно увеличить или уменьшить
+
+        // Очистка таймера при размонтировании компонента
+        return () => clearTimeout(timeoutId);
       }
     };
 
-    // Проверка наличия Telegram Web App каждые 500ms до инициализации
-    const intervalId = setInterval(() => {
-      if (!isTelegramInitialized) {
-        checkTelegram();
-      } else {
-        clearInterval(intervalId);
-      }
-    }, 500);
-
-    // Очистка интервала при размонтировании компонента
-    return () => clearInterval(intervalId);
-  }, [isTelegramInitialized, setUserId]);
+    // Запуск инициализации
+    initializeTelegram();
+  }, [setUserId]);
 
   return null;
 };
