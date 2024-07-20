@@ -2,7 +2,6 @@
 import Course from "@/app/types";
 import Card from "@/app/types";
 import { supabase } from "@/lib/supabase";
-import { useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";

@@ -27,3 +27,10 @@ export default interface News {
   link: string;
   id: number;
 }
+
+export default interface Fund {
+  id: number;
+  name: string;
+  url: string;
+  description: string;
+}

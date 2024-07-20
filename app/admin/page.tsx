@@ -18,6 +18,18 @@ export default function AdminPage() {
           <Link href="admin/editArticles" className="bg-slate-400 text-white px-4 py-2 rounded-lg shadow hover:bg-slate-500 transition duration-300 inline-block text-center no-underline">
               Edit Articles
           </Link>
+          <Link href="admin/newNews" className="bg-green-700 text-white px-4 py-2 rounded-lg shadow hover:bg-green-800 transition duration-300 inline-block text-center no-underline">
+              Add New Piece of News
+          </Link>
+          <Link href="admin/editNews" className="bg-slate-400 text-white px-4 py-2 rounded-lg shadow hover:bg-slate-500 transition duration-300 inline-block text-center no-underline">
+              Edit News
+          </Link>
+          <Link href="admin/newFund" className="bg-green-700 text-white px-4 py-2 rounded-lg shadow hover:bg-green-800 transition duration-300 inline-block text-center no-underline">
+              Add New Fund
+          </Link>
+          <Link href="admin/editFunds" className="bg-slate-400 text-white px-4 py-2 rounded-lg shadow hover:bg-slate-500 transition duration-300 inline-block text-center no-underline">
+              Edit Funds
+          </Link>
       </div>
     </div>
   );

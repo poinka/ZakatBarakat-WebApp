@@ -1,8 +1,7 @@
 'use client'
 import { supabase } from "@/lib/supabase";
-import ArticleListEdit from "@/components/ArticleListEdit";
-import Article from "@/app/types";
-import React from 'react';
+import News from "@/app/types";
+import NewsListEdit from "@/components/NewsListEdit"
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { fetcher } from "@/lib/fetcher";
@@ -10,22 +9,22 @@ import useSWR from "swr";
 import errorWrapper from "@/app/error";
 import LoadingPage from "@/app/loading";
 
-export default function EditArticles() {
-    const { data: articles, error } = useSWR<Article[]>('articles', fetcher)
+export default function EditNews() {
+    const { data: news, error } = useSWR<News[]>('news', fetcher)
     if (error) return errorWrapper(error);
-    if (!articles) return LoadingPage();
+    if (!news) return LoadingPage();
 
     const handleDelete = async (id: number) => {
-        await supabase.from("articles").delete().eq('id', id);
+        await supabase.from("news").delete().eq('id', id);
         window.location.reload();
         // You might want to re-fetch the courses list here or remove the deleted course from the local state.
     };
 
-    if (articles != null) {
+    if (news != null) {
         return (
             <div>
-                {articles.map((article) => (
-                    <ArticleListEdit key={article.id} article={article} onDelete={handleDelete} />
+                {news.map((neww) => (
+                    <NewsListEdit key={neww.id} newsInit={neww} onDelete={handleDelete} />
                 ))}
                 <div className="w-20 m-auto">
                 <Link href="/admin">
@@ -39,7 +38,7 @@ export default function EditArticles() {
     } else {
         return (
             <div className="w-20 m-auto">
-            <h1>There are no articles</h1>
+            <h1>There are no news</h1>
             <Link href="/admin">
                 <Button variant="outline">
                     Go back
