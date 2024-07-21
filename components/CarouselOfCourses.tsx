@@ -51,7 +51,7 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
                       height={300}
                       className={styles.courseImage}
                     />
-                    <CardTitle className={styles.title}>
+                    <CardTitle className={`p-2 pt-8 ${styles.title}`}>
                       {course.title}
                     </CardTitle>
                   </CardContent>
