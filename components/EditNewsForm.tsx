@@ -68,8 +68,8 @@ export default function EditCourseForm({ newsId }: EditNewsFormProps) {
           Content
         </label>
         <textarea
-          maxLength={200}
-          placeholder="Short text content (up to 200 characters)"
+          maxLength={230}
+          placeholder="Short text content (up to 230 characters)"
           required
           name="text"
           defaultValue={newsData.text}

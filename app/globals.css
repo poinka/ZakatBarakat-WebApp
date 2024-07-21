@@ -85,6 +85,7 @@
   padding: 0.5rem;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: all 0.5s ease-in-out;
 }
 
 .courseItem {
@@ -186,4 +187,26 @@ h1 {
   background: #f0f0f0;
   border-radius: 10px;
   box-shadow: 0px 0px 6px 6px rgba(0, 0, 0, 0.1);
+}
+
+.long-description {
+  color: #006400; /* Темно-зеленый цвет */
+  font-family: 'Arial', sans-serif; /* Красивый шрифт */
+  font-size: 1.3rem; /* Размер шрифта в 1.5 раза больше */
+  margin-top: 0rem; /* Отступ сверху */
+  text-align: left; /* Центрирование текста */
+  padding-right: 2.5rem; /* Отступ справа */
+}
+
+.level {
+  font-size: 1.5rem; /* Размер шрифта */
+  font-weight: bold; /* Жирный шрифт */
+  margin-bottom: 1rem; /* Отступ снизу */
+}
+
+.card-container {
+  transform: scale(0.7); /* Уменьшение размера */
+  width: 100%; /* Обеспечение адаптивности */
+  display: flex;
+  justify-content: center;
 }

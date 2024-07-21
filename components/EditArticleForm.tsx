@@ -68,8 +68,8 @@ export default function EditFundsForm({ articleId }: EditArticleProp) {
           Description
         </label>
         <textarea
-          maxLength={200}
-          placeholder="Short description (up to 200 characters)"
+          maxLength={230}
+          placeholder="Short description (up to 230 characters)"
           required
           name="description"
           defaultValue={articleData.description}

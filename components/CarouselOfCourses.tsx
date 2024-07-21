@@ -41,7 +41,7 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
               <CarouselItem
                 className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3 basis-1 pl-10`}
               >
-                <Card className="aspect-square shadow-md">
+                <Card className="aspect-square shadow-md" style={{borderRadius: "15px"}}>
                   <CardContent className="aspect-square items-center justify-center">
                     <Image
                       src={course.imageUrl}

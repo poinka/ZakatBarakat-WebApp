@@ -50,8 +50,8 @@ export default function HomePage() {
         </div>
           <div className="p-10 bg-ornaments-right">
             <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Recommended Articles</h1>
-            <div className="flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 max-w-screen-lg">
+            <div className="flex justify-center m-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 w-11/12 max-w-screen-lg">
                 <ArticleCard {...article1}>
 
                 </ArticleCard>
@@ -61,8 +61,8 @@ export default function HomePage() {
               </div>
             </div>
             <h1 className='pt-10 text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Financial News</h1>
-            <div className="flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 max-w-screen-lg">
+            <div className="flex justify-center m-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 w-11/12 max-w-screen-lg">
                 {newsArray?.map((newPiece) => (
                   <NewsCard key={newPiece.id} {...newPiece} />
                 ))}

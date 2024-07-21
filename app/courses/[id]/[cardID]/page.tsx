@@ -103,7 +103,7 @@ export default function CardPage({ params: { cardID } }: Props) {
   const progress = ((currentCardIndex) / cards.length) * 100;
 
   return (
-    <div className="flex justify-center flex-col items-center h-screen">
+    <div className="flex justify-center flex-col items-center h-screen pt-20">
       <div className="w-full max-w-md">
         
         {currentCardIndex < cards.length ? (

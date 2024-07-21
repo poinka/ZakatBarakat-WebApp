@@ -1,14 +1,13 @@
 import Course from "@/app/types";
 import { supabase } from "@/lib/supabase";
-import MainEducationalCard from "@/components/MainEducationalCard"
-import Link from "next/link";
+import MainEducationalCard from "@/components/MainEducationalCard";
+
 
 type Props = {
   params: {
     id: number;
   };
 };
-
 
 export default async function CoursePage({ params: { id } }: Props) {
   try {
@@ -18,16 +17,17 @@ export default async function CoursePage({ params: { id } }: Props) {
       return <div>Course not found.</div>;
     }
     const course = data as Course;
-    console.log(course)
+    console.log(course);
     return (
-      <Link href={`/courses/${course.id}/${course.cardIDs[0]}`} style={{textDecoration: "none", color: "black"}}>
-      <div className="flex flex-col items-center justify-center min-h-screen py-2">
-        <MainEducationalCard 
-          course={course}
-        />
-        <p>{course.longDescription}</p>
+      <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-ornaments">
+          <div className="card-container md:scale-90">
+            <MainEducationalCard course={course} />
+          </div>
+        
+        <div className="long-description md:mt-10">What is this course about:
+        <p className="long-description pt-8 md:pt-10">{course.description}</p>
+        </div>
       </div>
-      </Link>
     );
   } catch (error) {
     console.error("Failed to load course data:", error);
