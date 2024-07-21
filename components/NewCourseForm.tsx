@@ -7,6 +7,12 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import { fetchImages } from '@/lib/fetchImages';
+
+interface ImageDetail {
+    name: string;
+    url: string;
+}
 
 async function createCourse(formData: FormData) {
   const { title, shortDescription, longDescription, level, imageUrl } = Object.fromEntries(formData);
@@ -50,21 +56,17 @@ async function createCourse(formData: FormData) {
 export default function NewCourseForm() {
   const [showCardForm, setShowCardForm] = useState(false);
   const [cardContents, setCardContents] = useState([""]);
-  const [images, setImages] = useState<{ url: string }[]>([]);
   const [selectedImage, setSelectedImage] = useState("");
+  const [images, setImages] = useState<ImageDetail[]>([]);
 
   useEffect(() => {
-    async function fetchImages() {
-      const numberOfImages = 6;
-      let imagesUrls = [] as { url: string }[];
-      for (let i = 1; i <= numberOfImages; i++) {
-        const { data } = await supabase.storage.from('images').getPublicUrl(`img_${i}.png`);
-        imagesUrls.push({ url: data.publicUrl });
-      }
-      setImages(imagesUrls);
-    }
-    fetchImages();
-  }, []);
+        const loadImages = async () => {
+            const imageDetails = await fetchImages();
+            setImages(imageDetails);
+        };
+
+        loadImages();
+    }, []);
 
   const handleAddCard = () => {
     setCardContents([...cardContents, ""]);
@@ -146,7 +148,7 @@ export default function NewCourseForm() {
         >
           <option value="https://cqwnxtngxmuzpomxeztt.supabase.co/storage/v1/object/public/images/noimg.png">Select an image</option>
           {images.map((image, index) => (
-            <option key={index} value={image.url}>Image №{index + 1}</option>
+            <option key={index} value={image.url}>{image.name}</option>
           ))}
         </select>
       </div>

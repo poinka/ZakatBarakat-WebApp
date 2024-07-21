@@ -5,6 +5,12 @@ import { supabase } from "@/lib/supabase";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchImages } from '@/lib/fetchImages';
+
+interface ImageDetail {
+    name: string;
+    url: string;
+}
 
 async function updateCourse(formData: FormData, courseId: number) {
   const { title, shortDescription, longDescription, level, imageUrl } = Object.fromEntries(formData);
@@ -49,7 +55,7 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
   const [showCardForm, setShowCardForm] = useState(true);
   const [courseData, setCourseData] = useState<Course | null>(null);
   const [cardContents, setCardContents] = useState<{ id?: number, body: string }[]>([]);
-  const [images, setImages] = useState<{ url: string }[]>([]);
+  const [images, setImages] = useState<ImageDetail[]>([]);
   const [selectedImage, setSelectedImage] = useState("");
 
   useEffect(() => {
@@ -67,13 +73,12 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
         .in("id", course?.cardIDs || []);
       setCardContents(cards || []);
 
-      const numberOfImages = 6;
-      let imagesUrls = [] as { url: string }[];
-      for (let i = 1; i <= numberOfImages; i++) {
-        const { data } = await supabase.storage.from('images').getPublicUrl(`img_${i}.png`);
-        imagesUrls.push({url: data.publicUrl});
-      }
-      setImages(imagesUrls);
+      const loadImages = async () => {
+          const imageDetails = await fetchImages();
+          setImages(imageDetails);
+      };
+
+      loadImages();
     }
     if (!isNaN(courseId)) {
       fetchData();
@@ -178,7 +183,7 @@ export default function EditCourseForm({ courseId }: EditCourseFormProps) {
         >
           <option value="https://cqwnxtngxmuzpomxeztt.supabase.co/storage/v1/object/public/images/noimg.png">Select an image</option>
           {images.map((image, index) => (
-            <option key={index} value={image.url}>Image №{index + 1}</option>
+            <option key={index} value={image.url}>{image.name}</option>
           ))}
         </select>
       </div>
