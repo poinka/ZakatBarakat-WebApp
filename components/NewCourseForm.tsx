@@ -160,11 +160,11 @@ export default function NewCourseForm() {
               <textarea
                 required
                 name={`${index}`}
-                maxLength={700}
+                maxLength={500}
                 value={content}
                 onChange={(e) => handleCardContentChange(index, e.target.value)}
                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                placeholder="Enter card text (up to 700 characters)"
+                placeholder="Enter card text (up to 500 characters)"
               ></textarea>
             </div>
           ))}
