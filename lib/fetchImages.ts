@@ -21,17 +21,12 @@ export const fetchImages = async (): Promise<ImageDetail[]> => {
     }
 
     const imageDetails = await Promise.all(data.map(async (file) => {
-        const { data: signedUrlData, error: signedUrlError } = await supabase
+        const { data: signedUrlData } = await supabase
             .storage
             .from('images')
-            .createSignedUrl(file.name, 60);
+            .getPublicUrl(file.name);
 
-        if (signedUrlError) {
-            console.error('Error creating signed URL:', signedUrlError);
-            return null;
-        }
-
-        return { name: file.name, url: signedUrlData.signedUrl } as ImageDetail;
+        return { name: file.name, url: signedUrlData.publicUrl } as ImageDetail;
     }));
 
     return imageDetails.filter(detail => detail !== null) as ImageDetail[];
