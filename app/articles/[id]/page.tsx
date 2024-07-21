@@ -28,10 +28,10 @@ export default function ArticlePage({ params: { id } }: Props) {
       <Card className="p-5 m-auto w-10/12 lg:w-2/3">
       <CardTitle className="text-xl md:text-4xl font-bold text-center p-5 pb-10 lg:p-10 text-green-900">{article.title}</CardTitle>
       <CardContent className="">
-        <p style={{ whiteSpace: 'pre-wrap', color: " #1D411D" }} className="text-l lg:p-10 md:text-l text-green-950">
+        <div style={{ whiteSpace: 'pre-wrap', color: " #1D411D" }} className="text-l lg:p-10 md:text-l text-green-950">
         <MarkdownDisplay text={article.body} >
         </MarkdownDisplay>
-        </p>
+        </div>
       </CardContent>
       <div className="flex justify-center items-center">
       <Link href="/articles" className="p-5 bg-green-800 text-white py-2 px-4 rounded-md shadow-md hover:bg-green-900 text-sm md:text-base lg:text-lg">Go back</Link>
