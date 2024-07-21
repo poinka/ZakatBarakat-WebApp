@@ -1,3 +1,4 @@
+'use client'
 import Article from "@/app/types";
 import Link from "next/link";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
@@ -13,7 +14,7 @@ type Props = {
   };
 };
 
-export default async function ArticlePage({ params: { id } }: Props) {
+export default function ArticlePage({ params: { id } }: Props) {
     const { data: articles, error, isLoading } = useSWR<Article[]>(`articles ${id}`, fetcherForOne)
     if (error) return errorWrapper(error);
     if (isLoading) return LoadingPage();

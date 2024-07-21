@@ -1,3 +1,4 @@
+'use client'
 import Course from "@/app/types";
 import MainEducationalCard from "@/components/MainEducationalCard";
 import MarkdownDisplay from "@/components/MarkdownDisplay";
@@ -12,7 +13,7 @@ type Props = {
   };
 };
 
-export default async function CoursePage({ params: { id } }: Props) {
+export default function CoursePage({ params: { id } }: Props) {
     const { data: courses, error, isLoading } = useSWR<Course[]>(`courses ${id}`, fetcherForOne)
     if (error) return errorWrapper(error);
     if (isLoading) return LoadingPage();
