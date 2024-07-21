@@ -6,16 +6,16 @@ export default function Footer() {
       <div className="w-full p-6 bg-white rounded-lg shadow-3xl mt-8">
         <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row md:justify-between">
           <div className="flex flex-col">
-            <h1 className="text-lg font-bold mb-2">contact us:</h1>
+            <h1 className="text-lg font-bold mb-2">Contact us:</h1>
             {/* Add contact details or links here */}
             <Link href="mailto:zakatapptech@gmail.com">zakatapptech@gmail.com</Link>
           </div>
           <div className="flex flex-col">
-            <h1 className="text-lg font-bold mb-2">about us:</h1>
+            <h1 className="text-lg font-bold mb-2">About us:</h1>
             <p  style={{color: " #1D411D"}} className="w-72 md:w-80">Our platform is an Islamic and Personal Finance knowledge hub aimed at increasing awareness and financial literacy in Islamic and Personal Finance.</p>
           </div>
           <div className="flex flex-col">
-            <h1 className="text-lg font-bold mb-2">social media:</h1>
+            <h1 className="text-lg font-bold mb-2">Social media:</h1>
             <div className="flex flex-row justify-start pl-1 gap-3 md:justify-center">
 
             <Link target="_blank" href="https://www.facebook.com/profile.php?id=61551552044986">
