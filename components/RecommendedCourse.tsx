@@ -7,9 +7,9 @@ export default function RecommendedCourse(course: Course) {
         <div className="lg:w-72 m-0 w-40">
           <CourseCard {...course} />
         </div>
-        <div className="flex flex-col items-start text-start text-green-800 text-sm lg:text-xl p-5 w-40">
-          <p>recommended for beginners</p>
-          <hr className="w-40 border-t-2 border-green-900 mt-2" />
+        <div className="flex flex-col items-start text-end text-green-800 text-sm lg:text-xl p-5 w-40">
+          <p className="pl-8 md:p-10">recommended for beginners</p>
+          <hr className="w-32 md:w-44 border-t-2 border-green-900 mt-2" />
         </div>
         </div>
   );

@@ -20,7 +20,7 @@ const CourseCard: React.FC<Course> = ({ title, description, imageUrl, id }) => {
             />
           </div>
           <div className="flex-grow p-0 text-center">
-            <h2 className="text-xs sm:text-xs lg:text-sm pt-4">{title}</h2>
+            <h2 className="text-xs font-bold text-green-900 sm:text-xs lg:text-lg pt-4">{title}</h2>
           </div>
         </CardContent>
       </Card>

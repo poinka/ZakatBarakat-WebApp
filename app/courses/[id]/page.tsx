@@ -19,13 +19,13 @@ export default async function CoursePage({ params: { id } }: Props) {
     const course = data as Course;
     console.log(course);
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-ornaments">
-          <div className="card-container md:scale-90">
+      <div className="flex flex-col items-center justify-center min-h-screen py-2 pt-20 bg-ornaments">
+          <div className="w-3/4 flex justify-center">
             <MainEducationalCard course={course} />
           </div>
         
-        <div className="long-description md:mt-10">What is this course about:
-        <p className="long-description pt-8 md:pt-10">{course.description}</p>
+        <div className="long-description md:mt-10 p-16 pt-8 text-lg font-bold md:w-1/2">What is this course about:
+        <p style={{ whiteSpace: 'pre-wrap' }} className="long-description pt-8 md:pt-10 text-lg font-normal">{course.description}</p>
         </div>
       </div>
     );

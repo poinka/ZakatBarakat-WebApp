@@ -54,9 +54,6 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
                     <CardTitle className={styles.title}>
                       {course.title}
                     </CardTitle>
-                    <CardDescription className={styles.description}>
-                      {course.description}
-                    </CardDescription>
                   </CardContent>
                 </Card>
               </CarouselItem>

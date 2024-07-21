@@ -44,7 +44,7 @@ async function updateCourse(formData: FormData, courseId: number) {
     .update({ title: title, description: description, level: level, cardIDs: cardIds, imageUrl: imageUrl })
     .eq("id", courseId);
 
-  window.location.href = `/courses/${courseId}`; // Redirect using window.location
+  window.location.href = `/admin/editCourses`; // Redirect using window.location
 }
 
 type EditCourseFormProps = {

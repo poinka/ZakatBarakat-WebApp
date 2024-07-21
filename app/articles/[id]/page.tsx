@@ -22,7 +22,7 @@ export default async function ArticlePage({ params: { id } }: Props) {
       <Card className="p-5 m-auto w-10/12 lg:w-2/3">
       <CardTitle className="text-xl md:text-3xl font-bold text-start p-5 pb-10 lg:p-10 text-green-900">{article.title}</CardTitle>
       <CardContent className="">
-        <p className="text-l lg:p-10 md:text-l text-green-950">
+        <p style={{ whiteSpace: 'pre-wrap', color: " #1D411D" }} className="text-l lg:p-10 md:text-l text-green-950">
         {article.body}
         </p>
       </CardContent>

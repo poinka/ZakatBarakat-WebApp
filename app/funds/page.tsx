@@ -29,7 +29,7 @@ export default function Funds() {
                 <Link key={index} href={fund.url} className="bg-white shadow-xl p-6 mb-6 md:max-w-md w-3/4 m-auto hover:scale-105" style={{borderRadius: "15px"}} >
                     <div>
                         <h2 className="text-2xl text-green-800 mb-2">{fund.name}</h2>
-                        <p className="text-gray-600">{fund.description}</p>
+                        <p style={{color: "#667266"}}>{fund.description}</p>
                     </div>
                 </Link>
                 ))}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -15,9 +16,18 @@ export default function Footer() {
           </div>
           <div className="flex flex-col">
             <h1 className="text-lg font-bold mb-2">social media:</h1>
-            <Link target="_blank" href="https://www.facebook.com/profile.php?id=61551552044986">Facebook</Link>
-            <Link target="_blank" href="https://x.com/ZakatAppIslamic">X</Link>
-            <Link target="_blank" href="https://www.instagram.com/zakatapp.pro/">Instagram</Link>
+            <div className="flex flex-row justify-start pl-1 gap-3 md:justify-center">
+            <Link target="_blank" href="https://www.facebook.com/profile.php?id=61551552044986">
+              <Image src="/facebook.png" alt="facebook" width={300} height={300} className="h-5 w-5"></Image>
+            </Link>
+            
+            <Link target="_blank" href="https://x.com/ZakatAppIslamic">
+              <Image src="/x.png" alt="x" width={300} height={300} className="h-5 w-6"></Image>
+            </Link>
+            <Link target="_blank" href="https://www.instagram.com/zakatapp.pro/">
+              <Image src="/instagram.png" alt="instagram" width={300} height={300} className="h-5 w-6"></Image>
+              </Link>
+              </div>
           </div>
         </div>
       </div>

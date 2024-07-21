@@ -192,14 +192,12 @@ h1 {
 .long-description {
   color: #006400; /* Темно-зеленый цвет */
   font-family: 'Arial', sans-serif; /* Красивый шрифт */
-  font-size: 1.3rem; /* Размер шрифта в 1.5 раза больше */
   margin-top: 0rem; /* Отступ сверху */
   text-align: left; /* Центрирование текста */
   padding-right: 2.5rem; /* Отступ справа */
 }
 
 .level {
-  font-size: 1.5rem; /* Размер шрифта */
   font-weight: bold; /* Жирный шрифт */
   margin-bottom: 1rem; /* Отступ снизу */
 }

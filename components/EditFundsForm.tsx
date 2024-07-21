@@ -12,7 +12,7 @@ async function updateNews(formData: FormData, fundId: number) {
     .update({ name: name, description: description, url: url })
     .eq("id", fundId);
 
-  window.location.href = `/funds`; 
+  window.location.href = `/admin/editFunds`; 
 }
 
 type EditFundsProp = {
