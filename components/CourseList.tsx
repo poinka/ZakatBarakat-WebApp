@@ -4,7 +4,7 @@ import RecommendedCourse from "./RecommendedCourse";
 
 const CourseList: React.FC<{ courses: Course[] }> = ({ courses }) => {
   return (
-    <div className="pt-16">
+    <div className="pt-16 md:px-32">
       <RecommendedCourse {...courses[0]}></RecommendedCourse>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-7 pt-10 p-6">
       {courses.map((course) => (
