@@ -2,6 +2,7 @@ import Article from "@/app/types";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import MarkdownDisplay from "@/components/MarkdownDisplay";
 
 type Props = {
   params: {
@@ -20,10 +21,11 @@ export default async function ArticlePage({ params: { id } }: Props) {
     return (
       <div className="pt-16 bg-ornaments">
       <Card className="p-5 m-auto w-10/12 lg:w-2/3">
-      <CardTitle className="text-xl md:text-3xl font-bold text-start p-5 pb-10 lg:p-10 text-green-900">{article.title}</CardTitle>
+      <CardTitle className="text-xl md:text-4xl font-bold text-center p-5 pb-10 lg:p-10 text-green-900">{article.title}</CardTitle>
       <CardContent className="">
         <p style={{ whiteSpace: 'pre-wrap', color: " #1D411D" }} className="text-l lg:p-10 md:text-l text-green-950">
-        {article.body}
+        <MarkdownDisplay text={article.body} >
+        </MarkdownDisplay>
         </p>
       </CardContent>
       <div className="flex justify-center items-center">

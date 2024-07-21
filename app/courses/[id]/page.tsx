@@ -1,7 +1,7 @@
 import Course from "@/app/types";
 import { supabase } from "@/lib/supabase";
 import MainEducationalCard from "@/components/MainEducationalCard";
-
+import MarkdownDisplay from "@/components/MarkdownDisplay";
 
 type Props = {
   params: {
@@ -25,7 +25,9 @@ export default async function CoursePage({ params: { id } }: Props) {
           </div>
         
         <div className="long-description md:mt-10 p-16 pt-8 text-lg font-bold md:w-1/2">What is this course about:
-        <p style={{ whiteSpace: 'pre-wrap' }} className="long-description pt-8 md:pt-10 text-lg font-normal">{course.description}</p>
+        <p style={{ whiteSpace: 'pre-wrap' }} className="long-description pt-8 md:pt-10 text-lg font-normal">
+          <MarkdownDisplay text={course.description} />
+          </p>
         </div>
       </div>
     );
