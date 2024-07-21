@@ -10,10 +10,14 @@ export default function Footer() {
             {/* Add contact details or links here */}
             <Link href="mailto:zakatapptech@gmail.com">zakatapptech@gmail.com</Link>
           </div>
-        
+          <div className="flex flex-col">
+            <h1 className="text-lg font-bold mb-2">about us:</h1>
+            <p  style={{color: " #1D411D"}} className="w-72 md:w-80">Our platform is an Islamic and Personal Finance knowledge hub aimed at increasing awareness and financial literacy in Islamic and Personal Finance.</p>
+          </div>
           <div className="flex flex-col">
             <h1 className="text-lg font-bold mb-2">social media:</h1>
             <div className="flex flex-row justify-start pl-1 gap-3 md:justify-center">
+
             <Link target="_blank" href="https://www.facebook.com/profile.php?id=61551552044986">
               <Image src="/facebook.png" alt="facebook" width={300} height={300} className="h-5 w-5"></Image>
             </Link>

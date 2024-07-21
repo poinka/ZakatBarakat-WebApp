@@ -136,8 +136,8 @@ export default function CardPage({ params: { cardID } }: Props) {
                 </p>
                 </div>
 
-                <div className="table">
-                  <Link href="/" className="m-auto w-44">
+                <div className="table m-auto w-44">
+                  <Link href="/" className="">
                     <button className="bg-green-800 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50 table-cell align-middle">
                       On main page
                     </button>
