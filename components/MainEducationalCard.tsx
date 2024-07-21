@@ -9,7 +9,7 @@ type MainEducationalCardProps = {
 
 const MainEducationalCard: React.FC<MainEducationalCardProps> = ({ course }) => {
   return (
-      <div className="bg-white shadow-lg rounded-lg p-6 max-w-sm aspect-square h-1/2" style={{borderRadius: "15px"}}>
+      <div className="bg-white shadow-lg rounded-lg p-6 max-w-sm aspect-square" style={{borderRadius: "15px"}}>
         <div className="h-6 w-24 rounded-full mb-4 shadow-inner text-center pl-5">
           <span className="block text-sm  text-gray-700 py-1 w-2/3">{course.level}</span>
         </div>
