@@ -1,8 +1,11 @@
 import Article from "@/app/types";
-import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import MarkdownDisplay from "@/components/MarkdownDisplay";
+import useSWR from "swr";
+import errorWrapper from "@/app/error";
+import LoadingPage from "@/app/loading";
+import { fetcherForOne } from "@/lib/fetcherForOne";
 
 type Props = {
   params: {
@@ -11,13 +14,14 @@ type Props = {
 };
 
 export default async function ArticlePage({ params: { id } }: Props) {
-  try {
-    const { data: articles } = await supabase.from("articles").select().eq("id", id);
+    const { data: articles, error, isLoading } = useSWR<Article[]>(`articles ${id}`, fetcherForOne)
+    if (error) return errorWrapper(error);
+    if (isLoading) return LoadingPage();
     if (!articles || articles.length === 0) {
       // Handle the case where no article is found for the ID
       return <div>Article not found.</div>;
     }
-    const article = articles[0] as Article;
+    const article = articles[0];
     return (
       <div className="pt-16 bg-ornaments">
       <Card className="p-5 m-auto w-10/12 lg:w-2/3">
@@ -34,8 +38,4 @@ export default async function ArticlePage({ params: { id } }: Props) {
     </Card>
     </div>
     );
-  } catch (error) {
-    console.error("Failed to load course data:", error);
-    return <div>Error loading course data.</div>;
-  }
 }

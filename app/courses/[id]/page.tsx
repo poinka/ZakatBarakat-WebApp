@@ -1,7 +1,10 @@
 import Course from "@/app/types";
-import { supabase } from "@/lib/supabase";
 import MainEducationalCard from "@/components/MainEducationalCard";
 import MarkdownDisplay from "@/components/MarkdownDisplay";
+import errorWrapper from "@/app/error";
+import LoadingPage from "@/app/loading";
+import { fetcherForOne } from "@/lib/fetcherForOne";
+import useSWR from "swr";
 
 type Props = {
   params: {
@@ -10,13 +13,14 @@ type Props = {
 };
 
 export default async function CoursePage({ params: { id } }: Props) {
-  try {
-    const { data } = await supabase.from("courses").select().eq("id", id).single();
-    if (!data) {
+    const { data: courses, error, isLoading } = useSWR<Course[]>(`courses ${id}`, fetcherForOne)
+    if (error) return errorWrapper(error);
+    if (isLoading) return LoadingPage();
+    if (!courses || courses.length === 0) {
       // Handle the case where no course is found for the ID
       return <div>Course not found.</div>;
     }
-    const course = data as Course;
+    const course = courses[0] as Course;
     console.log(course);
     return (
       <div className="flex flex-col items-center justify-center min-h-screen py-2 pt-20 bg-ornaments">
@@ -31,8 +35,4 @@ export default async function CoursePage({ params: { id } }: Props) {
         </div>
       </div>
     );
-  } catch (error) {
-    console.error("Failed to load course data:", error);
-    return <div>Error loading course data.</div>;
-  }
 }
