@@ -81,7 +81,7 @@ export default function EditFundsForm({ articleId }: EditArticleProp) {
         <h3 className="text-lg font-semibold mb-2">Content</h3>
         <textarea
           required
-          name="content"
+          name="body"
           defaultValue={articleData.body}
           maxLength={5000}
           className="mt-1 block w-full border border-gray-300 rounded-md p-2"
