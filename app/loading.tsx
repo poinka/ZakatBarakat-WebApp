@@ -1,3 +1,7 @@
 export default function LoadingPage() {
-  return <h1>Loading...</h1>;
+  return (
+    <div className="min-h-screen table w-20 m-auto">
+      <h1 className="table-cell align-middle">Loading...</h1>
+    </div>
+  );
 }

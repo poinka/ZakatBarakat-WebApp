@@ -103,7 +103,7 @@ export default function CardPage({ params: { cardID } }: Props) {
   const progress = ((currentCardIndex) / cards.length) * 100;
 
   return (
-    <div className="flex justify-center flex-col items-center h-screen">
+    <div className="flex justify-center flex-col items-center h-min-screen pt-20 bg-ornaments pb-20">
       <div className="w-full max-w-md">
         
         {currentCardIndex < cards.length ? (
@@ -117,7 +117,6 @@ export default function CardPage({ params: { cardID } }: Props) {
               : ''
           }`}
           >
-            <h2>Card {currentCardIndex + 1}</h2>
             <EducationalCard {...cards[currentCardIndex]} />
             <div className="flex justify-between w-full mt-4">
               <button onClick={handlePreviousCard} className="hidden md:block">
@@ -130,11 +129,24 @@ export default function CardPage({ params: { cardID } }: Props) {
           </div>
         ) : (
           <div className="text-center">
-            <p>Congrats! You have completed the course.</p>
-            <Link href="/">On main page</Link>
-          </div>
+            <div className="p-6 pt-16 bg-white rounded-lg shadow-md space-y-4 max-w-md aspect-square mx-auto mt-6 w-3/4" style={{ borderRadius: "15px" }}>
+              <div className="flex flex-col h-full">
+                <p className="list-disc space-y-2 px-6 text-xl" style={{color: " #1D411D"}}>
+                  Congratulations! You have completed the course.
+                </p>
+                </div>
+
+                <div className="table m-auto w-44">
+                  <Link href="/" className="">
+                    <button className="bg-green-800 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-opacity-50 table-cell align-middle">
+                      On main page
+                    </button>
+                  </Link>
+                </div>
+            </div>
+        </div>
         )}
-        <div className="m-20">
+        <div className="m-10">
           <div className="h-4 rounded-full overflow-hidden bg-gray-300">
             <div
               className="h-full bg-green-700"

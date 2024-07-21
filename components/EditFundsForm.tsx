@@ -12,7 +12,7 @@ async function updateNews(formData: FormData, fundId: number) {
     .update({ name: name, description: description, url: url })
     .eq("id", fundId);
 
-  window.location.href = `/funds`; 
+  window.location.href = `/admin/editFunds`; 
 }
 
 type EditFundsProp = {
@@ -68,8 +68,8 @@ export default function EditFundsForm({ fundId }: EditFundsProp) {
           Description
         </label>
         <textarea
-          maxLength={200}
-          placeholder="Short description (up to 200 characters)"
+          maxLength={230}
+          placeholder="Short description (up to 230 characters)"
           required
           name="description"
           defaultValue={fundData.description}

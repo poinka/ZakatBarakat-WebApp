@@ -12,7 +12,7 @@ async function updateArticle(formData: FormData, articleId: number) {
     .update({ title: title, description: description, body: body })
     .eq("id", articleId);
 
-  window.location.href = `/articles/${articleId}`; 
+  window.location.href = `/admin/editArticles`; 
 }
 
 type EditArticleProp = {
@@ -68,8 +68,8 @@ export default function EditFundsForm({ articleId }: EditArticleProp) {
           Description
         </label>
         <textarea
-          maxLength={200}
-          placeholder="Short description (up to 200 characters)"
+          maxLength={230}
+          placeholder="Short description (up to 230 characters)"
           required
           name="description"
           defaultValue={articleData.description}

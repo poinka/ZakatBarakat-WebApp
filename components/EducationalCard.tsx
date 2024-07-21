@@ -1,4 +1,4 @@
-import React from 'react';
+import MarkdownDisplay from "./MarkdownDisplay";
 
 interface CardComponentProps {
   body: string;
@@ -6,10 +6,10 @@ interface CardComponentProps {
 
 const EducationalCard: React.FC<CardComponentProps> = ({ body }) => {
   return (
-    <div className="p-6 bg-gray-200 rounded-lg shadow-md space-y-4 max-w-md mx-auto mt-6" style={{borderRadius: "15px"}}>
-      {/* <h2 className="text-xl font-semibold text-center">{title}</h2> */}
-      <p className="list-disc space-y-2 px-6 text-gray-700">
-        {body}
+    <div className="p-6 pt-8 bg-white rounded-lg shadow-md space-y-4 max-w-md aspect-square mx-auto mt-6 w-3/4" style={{borderRadius: "15px"}}>
+      <p style={{ whiteSpace: 'pre-wrap', color: " #1D411D" }} className="list-disc space-y-2 px-6 ">
+        <MarkdownDisplay text={body} >
+        </MarkdownDisplay>
       </p>
     </div>
   );

@@ -12,7 +12,7 @@ async function updateNews(formData: FormData, newsId: number) {
     .update({ title: title, text: text, link: link })
     .eq("id", newsId);
 
-  window.location.href = `/`; 
+  window.location.href = `/admin/editNews`; 
 }
 
 type EditNewsFormProps = {
@@ -68,8 +68,8 @@ export default function EditCourseForm({ newsId }: EditNewsFormProps) {
           Content
         </label>
         <textarea
-          maxLength={200}
-          placeholder="Short text content (up to 200 characters)"
+          maxLength={230}
+          placeholder="Short text content (up to 230 characters)"
           required
           name="text"
           defaultValue={newsData.text}

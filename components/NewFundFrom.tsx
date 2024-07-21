@@ -46,10 +46,10 @@ export default function NewFundForm() {
           Description
         </label>
         <textarea
-          placeholder="Short description (up to 200 characters)"
+          placeholder="Short description (up to 230 characters)"
           required
           name="description"
-          maxLength={200}
+          maxLength={230}
           className="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         />
       </div>

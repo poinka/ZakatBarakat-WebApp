@@ -41,7 +41,7 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
               <CarouselItem
                 className={`${styles.courseItem} md:basis-1/2 lg:basis-1/3 basis-1 pl-10`}
               >
-                <Card className="aspect-square shadow-md">
+                <Card className="aspect-square shadow-md" style={{borderRadius: "15px"}}>
                   <CardContent className="aspect-square items-center justify-center">
                     <Image
                       src={course.imageUrl}
@@ -51,12 +51,9 @@ export default function CarouselOfCourses({ courses }: CoursesCarouselProps) {
                       height={300}
                       className={styles.courseImage}
                     />
-                    <CardTitle className={styles.title}>
+                    <CardTitle className={`p-2 pt-8 ${styles.title}`}>
                       {course.title}
                     </CardTitle>
-                    <CardDescription className={styles.description}>
-                      {course.description}
-                    </CardDescription>
                   </CardContent>
                 </Card>
               </CarouselItem>

@@ -26,10 +26,10 @@ export default function Funds() {
         <div className="flex justify-center pt-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-screen-lg "> 
                 {funds.slice(1).map((fund, index) => (
-                <Link key={index} href={fund.url} className="bg-white shadow-xl p-6 mb-6 max-w-md hover:scale-105" style={{borderRadius: "15px"}} >
+                <Link key={index} href={fund.url} className="bg-white shadow-xl p-6 mb-6 md:max-w-md w-3/4 m-auto hover:scale-105 md:h-52 h-72" style={{borderRadius: "15px"}} >
                     <div>
                         <h2 className="text-2xl text-green-800 mb-2">{fund.name}</h2>
-                        <p className="text-gray-600">{fund.description}</p>
+                        <p style={{color: "#667266"}}>{fund.description}</p>
                     </div>
                 </Link>
                 ))}
