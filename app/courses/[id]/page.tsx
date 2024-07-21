@@ -1,39 +1,35 @@
 import Course from "@/app/types";
 import { supabase } from "@/lib/supabase";
+import MainEducationalCard from "@/components/MainEducationalCard";
+import MarkdownDisplay from "@/components/MarkdownDisplay";
 
 type Props = {
   params: {
-    id: string;
+    id: number;
   };
 };
 
-async function getById(
-  jsonObject: Record<string, any>,
-  id: string,
-): Promise<any | undefined> {
-  for (let objKey in jsonObject) {
-    let obj = jsonObject[objKey];
-    if (obj.id.toString() === id.toString()) {
-      return obj;
-    }
-  }
-  return undefined; // Explicitly return undefined if no matching object is found
-}
-
 export default async function CoursePage({ params: { id } }: Props) {
   try {
-    const { data: courses } = await supabase.from("courses").select().eq("id", id);
-    if (!courses || courses.length === 0) {
+    const { data } = await supabase.from("courses").select().eq("id", id).single();
+    if (!data) {
       // Handle the case where no course is found for the ID
       return <div>Course not found.</div>;
     }
-    const course = courses[0] as Course;
+    const course = data as Course;
+    console.log(course);
     return (
-      <>
-        <h1 style={{ color: "black" }}>Course {course.title}</h1>
-        <p>{course.description}</p>
-        <img src={course.imageUrl} />
-      </>
+      <div className="flex flex-col items-center justify-center min-h-screen py-2 pt-20 bg-ornaments">
+          <div className="w-3/4 flex justify-center">
+            <MainEducationalCard course={course} />
+          </div>
+        
+        <div className="long-description md:mt-10 p-16 pt-8 text-lg font-bold md:w-1/2">What is this course about:
+        <p style={{ whiteSpace: 'pre-wrap' }} className="long-description pt-8 md:pt-10 text-lg font-normal">
+          <MarkdownDisplay text={course.description} />
+          </p>
+        </div>
+      </div>
     );
   } catch (error) {
     console.error("Failed to load course data:", error);

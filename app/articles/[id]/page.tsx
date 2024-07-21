@@ -1,24 +1,14 @@
 import Article from "@/app/types";
 import { supabase } from "@/lib/supabase";
+import Link from "next/link";
+import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import MarkdownDisplay from "@/components/MarkdownDisplay";
 
 type Props = {
   params: {
     id: string;
   };
 };
-
-async function getById(
-  jsonObject: Record<string, any>,
-  id: string,
-): Promise<any | undefined> {
-  for (let objKey in jsonObject) {
-    let obj = jsonObject[objKey];
-    if (obj.id.toString() === id.toString()) {
-      return obj;
-    }
-  }
-  return undefined; // Explicitly return undefined if no matching object is found
-}
 
 export default async function ArticlePage({ params: { id } }: Props) {
   try {
@@ -29,11 +19,20 @@ export default async function ArticlePage({ params: { id } }: Props) {
     }
     const article = articles[0] as Article;
     return (
-      <>
-        <h1 style={{ color: "black" }}>Article {article.title}</h1>
-        <p>{article.description}</p>
-        <img src={article.imageUrl} />
-      </>
+      <div className="pt-16 bg-ornaments">
+      <Card className="p-5 m-auto w-10/12 lg:w-2/3">
+      <CardTitle className="text-xl md:text-4xl font-bold text-center p-5 pb-10 lg:p-10 text-green-900">{article.title}</CardTitle>
+      <CardContent className="">
+        <p style={{ whiteSpace: 'pre-wrap', color: " #1D411D" }} className="text-l lg:p-10 md:text-l text-green-950">
+        <MarkdownDisplay text={article.body} >
+        </MarkdownDisplay>
+        </p>
+      </CardContent>
+      <div className="flex justify-center items-center">
+      <Link href="/articles" className="p-5 bg-green-800 text-white py-2 px-4 rounded-md shadow-md hover:bg-green-900 text-sm md:text-base lg:text-lg">Go back</Link>
+      </div>
+    </Card>
+    </div>
     );
   } catch (error) {
     console.error("Failed to load course data:", error);

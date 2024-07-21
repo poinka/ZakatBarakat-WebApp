@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link"; // Import Next.js Link component for navigation
+import Link from "next/link";
 import backgroundImage from "./images/main-photo-header.png";
 import Navigation from "../components/Navigation";
 
@@ -7,48 +7,16 @@ const NavItems = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
   { label: "Articles", href: "/articles" },
-  { label: "News", href: "/news" },
-  { label: "Organizations", href: "/organizations" },
+  { label: "Funds", href: "/funds" },
 ];
 
 const Header = () => {
   return (
     <header
-      style={{
-        backgroundImage: `url(${backgroundImage.src})`,
-        height: "30%", // Adjust based on your image size
-        backgroundSize: "cover",
-        display: "flex",
-        flexDirection: "column", // Change to column direction
-        justifyContent: "space-between", // Space between items vertically
-        alignItems: "center",
-        color: "white",
-        textAlign: "center",
-        padding: "50px 0", // Add vertical padding
-      }}
-    >
-      <div>
-        <h1>Islamic Finance Academy</h1>
-        <Link href="../courses">
-          <button
-            style={{
-              padding: "10px 20px",
-              fontSize: "18px",
-              borderRadius: "5px",
-              cursor: "pointer",
-              backgroundColor: "rgba(255, 255, 255, 0.7)",
-              borderColor: "transparent",
-              margin: "10%",
-              color: "rgb(112, 112, 112)",
-            }}
-          >
-            Start Education
-          </button>
-        </Link>
-        <br />
-        <Navigation navLinks={NavItems} />
-      </div>
+      className="bg-cover bg-top h-70 flex flex-col justify-between items-center text-center pt-12">
+      <Navigation navLinks={NavItems} />
     </header>
   );
 };
+
 export default Header;
