@@ -50,7 +50,7 @@ export default function HomePage() {
         </div>
           <div className="p-10 bg-ornaments-right">
             <h1 className='text-lg md:text-xl lg:text-2xl lg:pl-72 pl-9'>Recommended Articles</h1>
-            <div className="flex justify-center m-auto">
+            <div className="flex justify-center">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 w-11/12 max-w-screen-lg">
                 <ArticleCard {...article1}>
 
